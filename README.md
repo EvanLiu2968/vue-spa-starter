@@ -1,8 +1,13 @@
 # manage-system #
-基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案。)
+
+基于Vue.js 2.x 的后台管理系统解决方案。 [Demo（即build的dist文件）](https://evanliu2968.github.io/vueSystem/dist/index.html)
+
+- 根据登录用户判断权限从vuex获取相应路由和菜单（或服务器获取），然后保存状态（sessionStorage,vuex,cookie）
+- 路由钩子拦截非登陆状态（跳转至登录页）和404页面（拦截机制或许可更优化）
+- 刷新页面则从sessionStorage取出缓存路径和用户信息并重新加载路由、菜单，然后跳转至缓存路径
 
 ## 说明 ##
-以Vue2.x作为MVVC框架，以Element UI 作为dom框架的后台管理系统解决方案
+基于Vue2.x及Element UI(DOM框架)，vue-router，vues，axios的后台管理系统解决方案
 
 
 ## 目录结构介绍 ##
