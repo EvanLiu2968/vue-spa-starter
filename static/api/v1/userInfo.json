@@ -1,0 +1,9 @@
+{
+	"status": 200,
+	"statustext": "请求成功",
+	"data": {
+		"rolename":"admin",
+		"username":"admin",
+		"userid":"szhjjyk346"
+	}
+}
