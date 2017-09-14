@@ -27,14 +27,21 @@ module.exports = {
         autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        proxyTable: { //代理跨域get请求，仅限开发环境
-            '/api':{
-                target:'http://api.juheapi.com',
-                changeOrigin:true,
-                pathRewrite:{
-                    '^/api':''  // '/api/japi/...'转成'target/japi/...' 
-                }
-            }
+        proxyTable: { //代理跨域请求，仅限开发环境
+            // 'api':{
+            //     target:'http://localhost:16266',
+            //     changeOrigin:true,
+            //     pathRewrite:{
+            //         '^/api':'/api'
+            //     }
+            // },
+            // 'oauth':{
+            //     target:'http://localhost:16266',
+            //     changeOrigin:true,
+            //     pathRewrite:{
+            //         '^/oauth2':'/oauth2' //代理oauth2页面url
+            //     }
+            // }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

@@ -48,4 +48,18 @@
 .text-left{
     text-align:left;
 }
-
+.text-blue{
+    color:#20a0ff;
+}
+.text-red{
+    color:#ff4949;
+}
+.text-gray{
+    color:#D3DCE6;
+}
+.text-yellow{
+    color:#F7BA2A;
+}
+.text-green{
+    color:#13CE66;
+}

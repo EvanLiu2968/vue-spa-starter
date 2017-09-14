@@ -1,6 +1,6 @@
-# manage-system #
+# vue-component #
 
-基于Vue.js 2.x 的后台管理系统解决方案。 [Demo（即build的dist文件）](https://evanliu2968.github.io/vueSystem/dist/index.html)
+基于Vue.js 2.x 的后台管理系统解决方案。 [Demo（即build的dist文件）](https://evanliu2968.github.io/vue-component/dist/index.html)
 
 - 根据登录用户判断权限从vuex获取相应路由和菜单（或服务器获取），然后保存状态（sessionStorage,vuex,cookie）
 - 路由钩子拦截非登陆状态（跳转至登录页）和404页面（拦截机制或许可更优化）
@@ -37,7 +37,8 @@
 
 
 ## 安装步骤 ##
-	cnpm install			// 安装项目依赖，没有安装cnpm请先安装cnpm: npm install cnpm -g
+ - 设置npm镜像地址 npm config set registry https://registry.npm.taobao.org	
+ - 或使用cnpm install  //安装cnpm: npm install cnpm -g
 
 ## 本地开发 ##
 	npm run dev            // 开启服务器，将自动打开浏览器访问 http://localhost:8080

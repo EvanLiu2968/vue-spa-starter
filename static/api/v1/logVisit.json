@@ -1,0 +1,26 @@
+{
+	"status": 200,
+	"statustext": "请求成功",
+	"data": {
+		"draw":1,
+		"pagestart":1,
+		"pagesize":10,
+		"recordstotal": 108,
+		"records":[
+			{
+				"systemNo":"0001",
+				"systemName":"交通问卷调查系统",
+				"account":"zhangsan",
+				"loginTime":"2017-04-01 12:13:14",
+				"remark":"暂无"
+			},
+			{
+				"systemNo":"0001",
+				"systemName":"交通问卷调查系统",
+				"account":"lisi",
+				"loginTime":"2017-04-01 12:13:14",
+				"remark":"暂无"
+			}
+		]
+	}
+}
