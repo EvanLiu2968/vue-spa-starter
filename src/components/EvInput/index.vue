@@ -34,7 +34,7 @@
 
 <script>
 	export default {
-	name: 'material-input',
+	name: 'ev-input',
 	computed: {
 		computedErrors() {
 			return typeof this.errorMessages === 'string'? [this.errorMessages] : this.errorMessages

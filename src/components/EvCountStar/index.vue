@@ -4,7 +4,7 @@
 <script>
 import { requestAnimationFrame, cancelAnimationFrame } from './requestAnimationFrame.js'
 export default {
-	name:'count-to',
+	name:'ev-count-star',
 	props: {
 		startVal: {
 			type: Number,
