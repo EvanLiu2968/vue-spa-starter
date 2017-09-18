@@ -7,7 +7,12 @@ const ChangePwd= resolve => require(['../views/layout/ChangePwd.vue'], resolve);
 const NotFound= resolve => require(['../views/layout/404.vue'], resolve); //放在路由最后面
 const Home= resolve => require(['../views/layout/Home.vue'], resolve); //放在路由最后面
 
+const Directive= resolve => require(['../views/demo/Directive.vue'], resolve);
 const Echarts= resolve => require(['../views/demo/Echarts.vue'], resolve);
+const Form= resolve => require(['../views/demo/Form.vue'], resolve);
+const LazyLoad= resolve => require(['../views/demo/LazyLoad.vue'], resolve);
+const PageEditor= resolve => require(['../views/demo/PageEditor.vue'], resolve);
+const PdfViewer= resolve => require(['../views/demo/PdfViewer.vue'], resolve);
 
 const UserManage= resolve => require(['../views/system/UserManage.vue'], resolve);
 const RoleManage= resolve => require(['../views/system/RoleManage.vue'], resolve);
@@ -83,7 +88,47 @@ let routes=[
 			icon:'el-icon-menu'
 		},
 		children: [
+			{ path: '/directive', component: Directive, name: '指令',
+				meta:{
+					role:['admin','ordinary'],
+					isMenu:true,
+					isParent:false,
+					icon:''
+				}
+			},
 			{ path: '/echarts', component: Echarts, name: '图表',
+				meta:{
+					role:['admin','ordinary'],
+					isMenu:true,
+					isParent:false,
+					icon:''
+				}
+			},
+			{ path: '/form', component: Form, name: '表单',
+				meta:{
+					role:['admin','ordinary'],
+					isMenu:true,
+					isParent:false,
+					icon:''
+				}
+			},
+			{ path: '/lazyload', component: LazyLoad, name: '懒加载',
+				meta:{
+					role:['admin','ordinary'],
+					isMenu:true,
+					isParent:false,
+					icon:''
+				}
+			},
+			{ path: '/pageeditor', component: PageEditor, name: '编辑器',
+				meta:{
+					role:['admin','ordinary'],
+					isMenu:true,
+					isParent:false,
+					icon:''
+				}
+			},
+			{ path: '/pdfviewer', component: PdfViewer, name: 'PDF阅读器',
 				meta:{
 					role:['admin','ordinary'],
 					isMenu:true,
