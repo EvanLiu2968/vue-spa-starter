@@ -39,7 +39,7 @@ const mutations = {
 		//模拟登录
 		state.login=true;
 		let cache_path=sessionStorage.getItem('cache_path');
-		if(cache_path){
+		if(cache_path&&cache_path!=='/login'){
 			router.push(cache_path);
 		}else{
 			router.push('/');

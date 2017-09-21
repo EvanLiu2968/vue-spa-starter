@@ -15,7 +15,9 @@ import './assets/js/nprogress.css';// 不从moduel引入是为方便修改样式
 import store from './vuex/store'   //状态管理
 import './assets/js/util.js' //全局扩展js
 import fetch from './assets/js/fetch.js';//引入全局自定义axios
+import vueWaves from './directive/waves'; // 水波纹指令
 Vue.use(ElementUI);
+Vue.use(vueWaves);
 //挂载在全局Vue里，即this.axios || this.fetch
 Object.defineProperties(Vue.prototype, {
 	axios: {
