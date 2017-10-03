@@ -1,13 +1,10 @@
 /*全局常用css */
-.container{
-    position:relative;
-    padding:15px;
-}
+
  /*基础类*/
 .bg-white{
     background-color:#fff;
 }
-.hidden {
+.hidden, [hidden] {
     display: none !important;
 }
 .disabled {

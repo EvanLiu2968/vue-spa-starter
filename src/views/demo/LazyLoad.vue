@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="plugins-tips">
+		<div class="component-tips">
 			参考知乎图片懒加载方案，以缩略图作为模糊过度
 		</div>
 	</div>

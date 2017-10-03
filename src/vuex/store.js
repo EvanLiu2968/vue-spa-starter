@@ -5,7 +5,7 @@ import * as getters from './getters'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import router from '../router';
-import {Message} from 'element-ui';
+import { Message } from 'element-ui';
 
 axios.defaults.withCredentials = true; //cookie设置
 Vue.use(Vuex);
@@ -19,7 +19,7 @@ let defaultUserInfo={
 	"contacts": "",
 	"uuid": "",
 	"role":"admin",
-	"avatar":"static/images/user.jpg",
+	"avatar":"static/images/mao.jpg",
 	"username": "evanliu2968",
 	"password1": "",
 	"expireon": "",
@@ -28,22 +28,19 @@ let defaultUserInfo={
 };
 // 应用初始状态
 const state = {
-	userInfo:defaultUserInfo,
-	login:false
+	userInfo:{},
+	login:false,
+	isCollapse:false
 }
 
 // 定义所需的 mutations
 //改变store的唯一方法：$store.commit('loginIn', {name: 'admin'});
 const mutations = {
-	updateUserinfo(state){
+	updateUserinfo(state,path){
 		//模拟登录
 		state.login=true;
-		let cache_path=sessionStorage.getItem('cache_path');
-		if(cache_path&&cache_path!=='/login'){
-			router.push(cache_path);
-		}else{
-			router.push('/');
-		}
+		state.userInfo=defaultUserInfo;
+		router.push(path);
 		return;
 		//更新用户信息，判断登录状态
 		axios.get('api/v1/portal/oauth2/userinfo').then((res)=>{
@@ -51,13 +48,7 @@ const mutations = {
 			if(res.data.status==200){
 				state.userInfo=res.data.data;
 				state.login=true;
-				let cache_path=sessionStorage.getItem('cache_path');
-				if(cache_path){
-					router.push(cache_path);
-				}else{
-					router.push('/');
-				}
-				
+				router.push(path);
 			}else{
 				Message.error(res.data.statustext);
 				window.location.href="/oauth2/login";
@@ -72,6 +63,9 @@ const mutations = {
 	logout(state) {
 		state.login=false;
 		router.push('/login');
+	},
+	toggleCollapse(state) {
+		state.isCollapse=!state.isCollapse;
 	},
 	addAttr(state,obj) {
 		state={...state,obj};

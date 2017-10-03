@@ -1,22 +1,22 @@
 <template>
 	<div>
-		<div class="plugins-tips">
+		<div class="component-tips">
 			vue-echarts-v3：基于vue2和eCharts.js3的图表组件。
 			访问地址：<a href="https://github.com/xlsdg/vue-echarts-v3" target="_blank">vue-echarts-v3</a>
 		</div>
-		<el-radio-group v-model="seriesRadio" :change="seriesChange">
+		<el-radio-group v-model="seriesRadio" :change="seriesChange" size="small">
 			<el-radio-button label="1">数据一</el-radio-button>
 			<el-radio-button label="2">数据二</el-radio-button>
 			<el-radio-button label="3">数据三</el-radio-button>
 		</el-radio-group>
 		<div class="mix-echarts">
-			<IEcharts :option="mix" ></IEcharts>
+			<Echarts :option="mix" ></Echarts>
 		</div>
 	</div>
 </template>
 
 <script>
-	import IEcharts from 'vue-echarts-v3';
+	import Echarts from 'vue-echarts-v3';
 	export default {
 		data: function(){
 			return {
@@ -53,7 +53,7 @@
 			}
 		},
 		components: {
-			IEcharts
+			Echarts
 		},
 		computed:{
 			seriesChange:function(){
@@ -69,7 +69,10 @@
 
 <style scoped>
 	.mix-echarts{
-		width:900px;
 		height:600px;
+	}
+	/* inline-block元素会有空隙的bug */
+	.el-radio-group{
+		font-size:0;
 	}
 </style>

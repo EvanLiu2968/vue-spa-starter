@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="plugins-tips">
+		<div class="component-tips">
 			页面编辑器
 		</div>
 	</div>

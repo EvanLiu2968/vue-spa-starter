@@ -1,13 +1,9 @@
 # vue-component #
 
-基于Vue.js 2.x 的后台管理系统解决方案。 [Demo（即build的dist文件）](https://evanliu2968.github.io/vue-component/dist/index.html)
-
-- 根据登录用户判断权限从vuex获取相应路由和菜单（或服务器获取），然后保存状态（sessionStorage,vuex,cookie）
-- 路由钩子拦截非登陆状态（跳转至登录页）和404页面（拦截机制或许可更优化）
-- 刷新页面则从sessionStorage取出缓存路径和用户信息并重新加载路由、菜单，然后跳转至缓存路径
+基于Vue的SPA内容管理系统解决方案
 
 ## 说明 ##
-基于Vue2.x及Element UI(DOM框架)，vue-router，vues，axios的后台管理系统解决方案
+基于Vue2.x及Element UI 2.0(DOM框架)，vue-router，vuex，axios的后台管理系统解决方案
 
 
 ## 目录结构介绍 ##
@@ -41,12 +37,12 @@
  - 或使用cnpm install  //安装cnpm: npm install cnpm -g
 
 ## 本地开发 ##
-	npm run dev            // 开启服务器，将自动打开浏览器访问 http://localhost:8080
+`npm run dev`            // 开启服务器，将自动打开浏览器访问 http://localhost:8080
 
 ## 构建生产 ##
 
-	// 执行构建命令，生成的dist文件夹放在服务器下即可访问
-	npm run build
+// 执行构建命令，生成的dist文件夹放在服务器下即可访问
+`npm run build`
 
 ### 浏览器支持
 

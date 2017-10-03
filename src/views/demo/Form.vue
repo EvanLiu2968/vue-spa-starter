@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="plugins-tips">
+		<div class="component-tips">
 			表单元素
 		</div>
 		<ev-input name="name" v-model="title" required :maxlength="100">标题</ev-input>

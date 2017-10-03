@@ -3,7 +3,10 @@
 	<header class="login-header">
 		<div class="">
 			<div class="pull-left" style=" overflow:hidden;">
-				<h1 class="logo">vue2开源组件库【603开源计划】</h1>
+				<h1 class="logo">
+					<img src='static/images/logo.png' />
+					vue2开源组件库【603开源计划】
+				</h1>
 			</div>
 			<div class="pull-right" style="padding:10px">
 				<ul class="nav">
@@ -19,7 +22,7 @@
 	</header>
 	<div class="login-body" id="particlesJS" >
 		<div class="login-box">
-			<div class="login-title">统一系统管理平台</div>
+			<div class="login-title">系统登录</div>
 			<el-form :model="loginForm" :rules="loginFormRules" ref="loginForm" label-width="0px">
 				<el-form-item prop="username">
 					<el-input v-model="loginForm.username" placeholder="用户名"></el-input>
@@ -67,7 +70,7 @@ import Home from './Home.vue';
 			submitLoginForm(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						this.$store.commit('updateUserinfo');
+						this.$store.commit('updateUserinfo','/');
 					} else {
 						this.$message.error('请输入正确的用户名和密码!');
 						return false;
@@ -209,6 +212,10 @@ import Home from './Home.vue';
 	font-size:24px;
 	color:#8492A6;
 }
+.logo>img{
+	float:left;
+	height:60px;width:60px;
+}
 .login-header{
 	position:absolute;
 	top:0;
@@ -243,7 +250,7 @@ import Home from './Home.vue';
 	top:50%;
 	left:50%;
 	margin-left:-180px;
-	margin-top:-240px;
+	margin-top:-140px;
 	width:360px;
 	border-radius:6px;
 	background: #fff;
