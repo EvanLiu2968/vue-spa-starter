@@ -32,7 +32,6 @@ let routes=[
 		component: Login,
 		name:'登录',
 		meta:{
-			role:['admin','ordinary'], //数组中有角色名则表示对该角色开放权限
 			isMenu:false, //是否作为菜单显示
 			isParent:false, //是否为下拉菜单，否则为路由菜单
 			icon:'' //菜单及导航栏图标的class
@@ -48,7 +47,6 @@ let routes=[
 		children: [
 			{ path: '/changepwd', component: ChangePwd, name: '修改密码',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:false,
 					isParent:false,
 					icon:'iconfont icon-password'
@@ -61,7 +59,6 @@ let routes=[
 		component:Layout,
 		name: '',
 		meta:{
-			role:['admin','ordinary'],
 			isMenu:true,
 			isParent:false,
 			icon:''
@@ -69,10 +66,9 @@ let routes=[
 		children: [
 			{ path: '/home', component: Home, name: '首页',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
-					icon:'iconfont icon-home7'
+					icon:'el-icon-custom-chaozhijifen'
 				}
 			}
 		]
@@ -82,15 +78,13 @@ let routes=[
 		component:Layout,
 		name: '示例',
 		meta:{
-			role:['admin','ordinary'],
 			isMenu:true,
 			isParent:true,
-			icon:'el-icon-menu'
+			icon:'el-icon-custom-liebiao1'
 		},
 		children: [
 			{ path: '/directive', component: Directive, name: '指令',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''
@@ -98,7 +92,6 @@ let routes=[
 			},
 			{ path: '/echarts', component: Echarts, name: '图表',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''
@@ -106,7 +99,6 @@ let routes=[
 			},
 			{ path: '/form', component: Form, name: '表单',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''
@@ -114,7 +106,6 @@ let routes=[
 			},
 			{ path: '/lazyload', component: LazyLoad, name: '懒加载',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''
@@ -122,7 +113,6 @@ let routes=[
 			},
 			{ path: '/pageeditor', component: PageEditor, name: '编辑器',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''
@@ -130,7 +120,6 @@ let routes=[
 			},
 			{ path: '/pdfviewer', component: PdfViewer, name: 'PDF阅读器',
 				meta:{
-					role:['admin','ordinary'],
 					isMenu:true,
 					isParent:false,
 					icon:''

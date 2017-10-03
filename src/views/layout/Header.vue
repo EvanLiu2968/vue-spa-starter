@@ -1,6 +1,11 @@
 <template>
 	<div class="header">
-		<div class="logo">vue2开源组件库【603开源计划】</div>
+		<span class="btn-collapse" @click="toggleSidebarCollapse"><i class="el-icon-custom-liebiao2"></i></span>
+		<el-breadcrumb separator-class="el-icon-arrow-right">
+			<template v-for="item in $route.matched">
+				<el-breadcrumb-item v-if="item.name" :key="item.name"><i v-if="item.meta.icon" :class="item.meta.icon"></i>{{ item.name }}</el-breadcrumb-item>
+			</template>
+		</el-breadcrumb>
 		<div class="user-info">
 			<el-dropdown trigger="click" @command="handleCommand">
 				<span class="el-dropdown-link">
@@ -31,6 +36,9 @@
 				if(command == 'logout'){
 					this.$store.commit('logout');
 				}
+			},
+			toggleSidebarCollapse(){
+				this.$store.commit('toggleCollapse');
 			}
 		}
 	}
@@ -38,36 +46,39 @@
 <style lang="less" scoped>
 	.header {
 		position: relative;
-		box-sizing: border-box;
-		width: 100%;
-		height: 60px;
+		height: 50px;
 		font-size: 22px;
-		line-height: 60px;
-		color: #fff;
-		background-color: #20A0FF;
-		.logo{
-			float: left;
-			margin-left:2em;
-		}
+		line-height: 50px;
+	}
+	.btn-collapse{
+		float:left;
+		margin-right:20px;
+		line-height:50px;
+		cursor:pointer;
+	}
+	.el-breadcrumb{
+		display:inline-block;
+		line-height:50px;
+	}
+	.el-breadcrumb i{
+		margin-right:4px;
 	}
 	.user-info {
 		float: right;
-		padding-right: 50px;
 		font-size: 16px;
-		color: #fff;
 	}
 	.user-info .el-dropdown-link{
 		position: relative;
 		display: inline-block;
 		padding-left: 50px;
-		color: #fff;
+		// color: #fff;
 		cursor: pointer;
 		vertical-align: middle;
 	}
 	.user-info .user-logo{
 		position: absolute;
 		left:0;
-		top:10px;
+		top:5px;
 		width:40px;
 		height:40px;
 		border-radius: 50%;

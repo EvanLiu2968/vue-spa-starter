@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div class="plugins-tips">
-			将<a href="https://github.com/mozilla/pdf.js">https://github.com/mozilla/pdf.js</a>封装为Vue组件
+		<div class="component-tips">
+			将&ensp;<a href="https://github.com/mozilla/pdf.js" target="_blank">github.com/mozilla/pdf.js</a>&ensp;封装为Vue组件
 		</div>
 	</div>
 </template>
