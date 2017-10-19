@@ -13,10 +13,10 @@
 		</div>
 		<el-button type="primary" size="mini" @click="countPlay">播放</el-button>
 		<el-button type="primary" size="mini" @click="countPause">暂停</el-button>
-		<ev-sticky className="sub-navbar" :stickyTop="80" :zIndex="999">
-			<div>滚动页面我会吸附在顶端</div>
+		<!-- <ev-sticky className="sub-navbar" :stickyTop="80" :zIndex="999">
+			<p style="line-height:2">滚动页面我会吸附在顶端</p>
 		</ev-sticky>
-		<div style="height:900px;background-color:#13ce66;"></div>
+		<div style="height:300px;background-color:#13ce66;"></div> -->
 	</div>
 </template>
 
