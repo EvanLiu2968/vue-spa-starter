@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "element-ui": "^2.0.0-alpha.1",
+    "element-ui": "^2.0.0-alpha.3",
     "js-cookie": "^2.1.4",
     "vue": "^2.4.4",
     "vue-echarts-v3": "^1.0.5",

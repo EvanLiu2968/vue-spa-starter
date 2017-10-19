@@ -17,21 +17,21 @@
                 </el-table-column>
                 <el-table-column prop="originPwd" label="初始密码" width="100">
                 </el-table-column>
-                <el-table-column prop="userName" label="用户名称" width="100" >
+                <el-table-column prop="userName" label="用户名称" width="80" >
                 </el-table-column>
                 <el-table-column prop="org" label="所属部门" min-width="120">
                 </el-table-column>
-                <el-table-column prop="email" label="邮件" min-width="160">
+                <el-table-column prop="email" label="邮件" min-width="150">
                 </el-table-column>
                 <el-table-column prop="phone" label="联系电话" width="120">
                 </el-table-column>
-                <el-table-column label="操作" width="300">
+                <el-table-column label="操作" min-width="300">
                     <template scope="scope">
                     <el-button-group>
-                        <el-button type="primary" size="small" @click="edit(scope.$index, scope.row)">修改资料</el-button>
-                        <el-button type="primary" size="small" @click="freezeUser(scope.$index, scope.row)">冻结用户</el-button>
-                        <el-button type="primary" size="small" @click="assignRole(scope.$index, scope.row)">分配角色</el-button>
-                        <el-button type="primary" size="small" @click="changePwd(scope.$index, scope.row)">修改密码</el-button>
+                        <el-button type="primary" size="mini" @click="edit(scope.$index, scope.row)">修改资料</el-button>
+                        <el-button type="primary" size="mini" @click="freezeUser(scope.$index, scope.row)">冻结用户</el-button>
+                        <el-button type="primary" size="mini" @click="assignRole(scope.$index, scope.row)">分配角色</el-button>
+                        <el-button type="primary" size="mini" @click="changePwd(scope.$index, scope.row)">修改密码</el-button>
                     </el-button-group>
                     </template>
                 </el-table-column>

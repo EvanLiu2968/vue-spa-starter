@@ -19,7 +19,7 @@
                 </el-table-column>
                 <el-table-column prop="roleDesc" label="角色描述" min-width="100" >
                 </el-table-column>
-                <el-table-column prop="creatPerson" label="创建人" width="100">
+                <el-table-column prop="creatPerson" label="创建人" width="80">
                 </el-table-column>
                 <el-table-column prop="creatTime" label="创建时间" width="160">
                 </el-table-column>
@@ -27,12 +27,12 @@
                 </el-table-column>
                 <el-table-column prop="updateTime" label="最近修改时间" width="160">
                 </el-table-column>
-                <el-table-column label="操作" width="240">
+                <el-table-column label="操作" min-width="250">
                     <template scope="scope">
                     <el-button-group>
-                        <el-button type="primary" size="small" @click="edit(scope.$index, scope.row)">修改角色</el-button>
-                        <el-button type="primary" size="small" @click="freezeRole(scope.$index, scope.row)">冻结角色</el-button>
-                        <el-button type="primary" size="small" @click="assignRole(scope.$index, scope.row)">分配用户</el-button>
+                        <el-button type="primary" size="mini" @click="edit(scope.$index, scope.row)">修改角色</el-button>
+                        <el-button type="primary" size="mini" @click="freezeRole(scope.$index, scope.row)">冻结角色</el-button>
+                        <el-button type="primary" size="mini" @click="assignRole(scope.$index, scope.row)">分配用户</el-button>
                     </el-button-group>
                     </template>
                 </el-table-column>

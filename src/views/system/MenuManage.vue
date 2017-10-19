@@ -89,18 +89,21 @@
       },
       renderContent(h, { node, data, store }) {
         return (
-          <span>
-            <span>
-              <span>{node.label}</span>
-            </span>
-            <span style="float: right; margin-right: 20px">
+          <div style="padding:4px 0">
+            <span style="margin-right:20px;">{node.label}</span>
+            <el-button-group>
               <el-button type="primary" size="mini" on-click={ () => this.append(store, data) }>添加菜单项</el-button>
               <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>修改菜单项</el-button>
               <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>权限分配</el-button>
               <el-button type="danger" size="mini" on-click={ () => this.remove(store, data) }>删除菜单项</el-button>
-            </span>
-          </span>);
+            </el-button-group>
+          </div>);
       }
     }
   };
 </script>
+<style>
+.el-tree-node__content{
+  height:36px;
+}
+</style>
