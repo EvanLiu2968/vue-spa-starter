@@ -1,22 +1,22 @@
 <template>
-	<div>
-		<div class="component-tips">
-			页面编辑器
-		</div>
-	</div>
+  <div>
+    <div class="component-tips">
+      页面编辑器
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-		data: function(){
-			return {
-			}
-		},
-		computed:{
-		},
-		beforeMount(){
-		}
-	}
+  export default {
+    data: function(){
+      return {
+      }
+    },
+    computed:{
+    },
+    beforeMount(){
+    }
+  }
 </script>
 
 <style scoped>
