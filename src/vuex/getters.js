@@ -1,8 +1,8 @@
 //类似vue的计算属性computed
 export const getUserInfo = state => {
-	return state.userInfo
+  return state.userInfo
 }
 export const getIsCollapse = state => {
-	return state.isCollapse
+  return state.isCollapse
 }
 

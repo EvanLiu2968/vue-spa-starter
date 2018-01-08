@@ -3,91 +3,91 @@
 
 // Utilities
 .text-hide() {
-	color: transparent;
-	text-shadow: none;
-	background-color: transparent;
-	border: 0;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
 }
 // Opacity
 .opacity(@opacity) {
-	opacity: @opacity;
-	// IE8 filter
-	@opacity-ie: (@opacity * 100);
-	filter: ~"alpha(opacity=@{opacity-ie})";
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
 }
 // Keep images from scaling beyond the width of their parents.
 .img-responsive(@display: block) {
-	display: @display;
-	max-width: 100%; // Part 1: Set a maximum relative to the parent
-	height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+  display: @display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 }
 // Labels
 .label-variant(@color) {
-	background-color: @color;
-	&[href] {
-		&:hover,
-		&:focus {
-			background-color: darken(@color, 10%);
-		}
-	}
+  background-color: @color;
+  &[href] {
+    &:hover,
+    &:focus {
+      background-color: darken(@color, 10%);
+    }
+  }
 }
 
 // Resize anything
 .resizable(@direction) {
-	resize: @direction; // Options: horizontal, vertical, both
-	overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
+  resize: @direction; // Options: horizontal, vertical, both
+  overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
 }
 
 // Sizing shortcuts
 .size(@width; @height) {
-	width: @width;
-	height: @height;
+  width: @width;
+  height: @height;
 }
 .square(@size) {
-	.size(@size; @size);
+  .size(@size; @size);
 }
 
 .reset-text() {
-	font-family: @font-family-base;
-	// We deliberately do NOT reset font-size.
-	font-style: normal;
-	font-weight: normal;
-	letter-spacing: normal;
-	line-break: auto;
-	line-height: @line-height-base;
-	text-align: left; // Fallback for where `start` is not supported
-	text-align: start;
-	text-decoration: none;
-	text-shadow: none;
-	text-transform: none;
-	white-space: normal;
-	word-break: normal;
-	word-spacing: normal;
-	word-wrap: normal;
+  font-family: @font-family-base;
+  // We deliberately do NOT reset font-size.
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: @line-height-base;
+  text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
 }
 .text-emphasis-variant(@color) {
-	color: @color;
-	a&:hover,
-	a&:focus {
-		color: darken(@color, 10%);
-	}
+  color: @color;
+  a&:hover,
+  a&:focus {
+    color: darken(@color, 10%);
+  }
 }
 // Text overflow
 // Requires inline-block or block for proper styling
 
 .text-overflow() {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .text-overflow-2 {
-	display: -webkit-box;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 // Components
 
@@ -95,96 +95,96 @@
 // Easily pump out default styles, as well as :hover, :focus, :active,
 // and disabled options for all buttons
 .button-variant(@color; @background; @border) {
-	color: @color;
-	background-color: @background;
-	border-color: @border;
+  color: @color;
+  background-color: @background;
+  border-color: @border;
 
-	&:focus,
-	&.focus {
-		color: @color;
-		background-color: darken(@background, 10%);
-				border-color: darken(@border, 25%);
-	}
-	&:hover {
-		color: @color;
-		background-color: darken(@background, 10%);
-				border-color: darken(@border, 12%);
-	}
-	&:active,
-	&.active,
-	.open > .dropdown-toggle& {
-		color: @color;
-		background-color: darken(@background, 10%);
-				border-color: darken(@border, 12%);
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 25%);
+  }
+  &:hover {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
 
-		&:hover,
-		&:focus,
-		&.focus {
-			color: @color;
-			background-color: darken(@background, 17%);
-					border-color: darken(@border, 25%);
-		}
-	}
-	&:active,
-	&.active,
-	.open > .dropdown-toggle& {
-		background-image: none;
-	}
-	&.disabled,
-	&[disabled],
-	fieldset[disabled] & {
-		&:hover,
-		&:focus,
-		&.focus {
-			background-color: @background;
-					border-color: @border;
-		}
-	}
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: darken(@background, 17%);
+          border-color: darken(@border, 25%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: @background;
+          border-color: @border;
+    }
+  }
 
-	.badge {
-		color: @background;
-		background-color: @color;
-	}
+  .badge {
+    color: @background;
+    background-color: @color;
+  }
 }
 
 // Skins
 .bg-variant(@color) {
-	background-color: @color;
-	a&:hover,
-	a&:focus {
-		background-color: darken(@color, 10%);
-	}
+  background-color: @color;
+  a&:hover,
+  a&:focus {
+    background-color: darken(@color, 10%);
+  }
 }
 .border-top-radius(@radius) {
-	border-top-right-radius: @radius;
-	 border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
 }
 .border-right-radius(@radius) {
-	border-bottom-right-radius: @radius;
-		 border-top-right-radius: @radius;
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
 }
 .border-bottom-radius(@radius) {
-	border-bottom-right-radius: @radius;
-	 border-bottom-left-radius: @radius;
+  border-bottom-right-radius: @radius;
+   border-bottom-left-radius: @radius;
 }
 .border-left-radius(@radius) {
-	border-bottom-left-radius: @radius;
-		 border-top-left-radius: @radius;
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
 }
 
 // Layout
 .clearfix() {
-	&:before,
-	&:after {
-		content: " "; // 1
-		display: table; // 2
-	}
-	&:after {
-		clear: both;
-	}
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
 }
 .center-block() {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
