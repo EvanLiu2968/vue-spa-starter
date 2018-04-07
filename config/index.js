@@ -5,6 +5,7 @@ module.exports = {
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../dist/index.html'),
+        template: path.resolve(__dirname, '../src/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
         assetsPublicPath: './',
@@ -25,6 +26,8 @@ module.exports = {
         env: require('./dev.env'),
         port: 8080,
         autoOpenBrowser: true,
+        index: 'index.html',
+        template: 'src/index.html',
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: { //代理跨域请求，仅限开发环境
