@@ -4,17 +4,17 @@ import router from './router';
 //import Vuex from 'vuex'
 import axios from 'axios';
 import ElementUI from 'element-ui';
-import '@/assets/css/reset.css';    //引入初始化css
+import 'assets/css/reset.css';    //引入初始化css
 import 'element-ui/lib/theme-chalk/index.css';
-import '@/assets/css/common.css';    //引入常用css
-import '@/assets/css/app.css';    //引入通用应用css
-import '@/assets/fonts/iconfont.css';    //引入图标
-import NProgress from '@/assets/lib/nprogress/nprogress'; // Progress 进度条
-import '@/assets/lib/nprogress/nprogress.css';// 不从moduel引入是为方便修改样式
-import store from '@/vuex/store'   //状态管理
-import '@/assets/js/util.js' //全局扩展js
-import fetch from '@/assets/js/fetch.js';//引入全局自定义axios
-import vueWaves from '@/directive/waves'; // 水波纹指令
+import 'assets/css/common.css';    //引入常用css
+import 'assets/css/app.css';    //引入通用应用css
+import 'assets/fonts/iconfont.css';    //引入图标
+import NProgress from 'assets/lib/nprogress/nprogress'; // Progress 进度条
+import 'assets/lib/nprogress/nprogress.css';// 不从moduel引入是为方便修改样式
+import store from 'src/vuex/store'   //状态管理
+import 'assets/js/util.js' //全局扩展js
+import fetch from 'assets/js/fetch.js';//引入全局自定义axios
+import vueWaves from 'src/directive/waves'; // 水波纹指令
 Vue.use(ElementUI,{size:'small'});
 Vue.use(vueWaves);
 //挂载在全局Vue里，即this.axios || this.fetch
@@ -43,12 +43,12 @@ router.beforeEach((to, from, next) => { //切换网页标题
     store.commit('updateUserinfo',to.path);
   }else{ //正常路由跳转
     if(to.matched.length===0){
-      next({ path: '/404' });//转至404
+      next({ name: '404' });//转至404
     } else if(isPermission(store.getters.getUserInfo.role,to.meta.role)){
-      document.title = to.name?(to.name+' | 开源组件库'):'开源组件库';
+      document.title = to.name?(to.name+' | vue component'):'vue component';
       next();
     }else{
-      next({ path: '/404' });//转至403
+      next({ name: '404' });//转至403
     }
   }
 });

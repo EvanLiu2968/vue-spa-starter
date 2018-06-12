@@ -88,16 +88,17 @@
     this.editMenuFormVisible=true;
     },
     renderContent(h, { node, data, store }) {
-    return (
-      <div style="padding:4px 0">
-      <span style="margin-right:20px;">{node.label}</span>
-      <el-button-group>
-        <el-button type="primary" size="mini" on-click={ () => this.append(store, data) }>添加菜单项</el-button>
-        <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>修改菜单项</el-button>
-        <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>权限分配</el-button>
-        <el-button type="danger" size="mini" on-click={ () => this.remove(store, data) }>删除菜单项</el-button>
-      </el-button-group>
-      </div>);
+      return (
+        <div style="padding:4px 0">
+          <span style="margin-right:20px;">{node.label}</span>
+          <el-button-group>
+            <el-button type="primary" size="mini" on-click={ () => this.append(store, data) }>添加菜单项</el-button>
+            <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>修改菜单项</el-button>
+            <el-button type="primary" size="mini" on-click={ () => this.edit(store, data) }>权限分配</el-button>
+            <el-button type="danger" size="mini" on-click={ () => this.remove(store, data) }>删除菜单项</el-button>
+          </el-button-group>
+        </div>
+      )
     }
   }
   };

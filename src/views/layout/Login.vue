@@ -5,7 +5,7 @@
       <div class="pull-left" style=" overflow:hidden;">
         <h1 class="logo">
           <img src='static/images/logo.png' />
-          vue2开源组件库【603开源计划】
+          vue component
         </h1>
       </div>
       <div class="pull-right" style="padding:10px">
