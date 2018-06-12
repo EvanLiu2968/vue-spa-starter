@@ -2,6 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Layout from '../views/layout/Layout.vue';
+// 基本写法
+// const Layout= resolve => require(['../views/layout/Layout.vue'], resolve);
+// 其余两种打包带chunkname的写法
+// const Layout= resolve => require.ensure([], () => resolve(require('../views/layout/Layout.vue')), 'Layout');
+// const Layout = () => import(/* webpackChunkName: "Layout" */  '../views/layout/Layout.vue')
+
 const Login= resolve => require(['../views/layout/Login.vue'], resolve);
 const ChangePwd= resolve => require(['../views/layout/ChangePwd.vue'], resolve);
 const NotFound= resolve => require(['../views/layout/404.vue'], resolve); //放在路由最后面
@@ -169,7 +175,7 @@ let routes=[
     ]
   },
   {
-    path: '/404',
+    path: '*',
     component: NotFound,
     name:'404',
     meta:{

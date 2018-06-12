@@ -11,15 +11,18 @@
       <template v-for="(item,index) in menus">
         <!-- 后续需分角色显示菜单 -->
         <template v-if="item.meta.isMenu">
-          <el-submenu :index="index+''"  v-if="item.meta.isParent">
+          <el-submenu :index="index+''" :key="index"  v-if="item.meta.isParent">
             <template slot="title">
               <i :class="item.meta.icon"></i><span slot="title">{{item.name}}</span>
             </template>
-            <el-menu-item-group v-for="child in item.children">
+            <el-menu-item-group v-for="(child, k) in item.children" :key="k">
               <el-menu-item :index="child.path">{{child.name}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item v-else :index="item.children[0].path"><i :class="item.children[0].meta.icon"></i><span slot="title">{{item.children[0].name}}</span></el-menu-item>
+          <el-menu-item v-else :index="item.children[0].path" :key="index">
+            <i :class="item.children[0].meta.icon"></i>
+            <span slot="title">{{item.children[0].name}}</span>
+          </el-menu-item>
         </template>
       </template>
     </el-menu>
