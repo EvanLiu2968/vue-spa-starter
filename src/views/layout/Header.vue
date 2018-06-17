@@ -1,11 +1,6 @@
 <template>
   <div class="header">
     <span class="btn-collapse" @click="toggleSidebarCollapse"><i class="el-icon-custom-liebiao2"></i></span>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <template v-for="item in $route.matched">
-        <el-breadcrumb-item v-if="item.name" :key="item.name"><i v-if="item.meta.icon" :class="item.meta.icon"></i>{{ item.name }}</el-breadcrumb-item>
-      </template>
-    </el-breadcrumb>
     <div class="user-info">
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
@@ -55,13 +50,6 @@
     margin-right:20px;
     line-height:50px;
     cursor:pointer;
-  }
-  .el-breadcrumb{
-    display:inline-block;
-    line-height:50px;
-  }
-  .el-breadcrumb i{
-    margin-right:4px;
   }
   .user-info {
     float: right;

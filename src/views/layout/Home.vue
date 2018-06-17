@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="component-tips">
-      vue2.5+、vue-router、veux、axios<br>
-      webpack
-    </div>
     <div class="component-title">vue-component</div>
+    <div class="component-tips">
+      基于Vue的SPA内容管理系统解决方案
+    </div>
   </div>
 </template>
 

@@ -3,11 +3,10 @@ import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
 import Cookies from 'js-cookie';
-import axios from 'axios';
+import axios from 'libs/axios';
 import router from '../router';
 import { Message } from 'element-ui';
 
-axios.defaults.withCredentials = true; //cookie设置
 Vue.use(Vuex);
 
 let defaultUserInfo={

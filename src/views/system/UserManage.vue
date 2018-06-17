@@ -26,7 +26,7 @@
         <el-table-column prop="phone" label="联系电话" width="120">
         </el-table-column>
         <el-table-column label="操作" min-width="300">
-          <template scope="scope">
+          <template slot-scope="scope">
           <el-button-group>
             <el-button type="primary" size="mini" @click="edit(scope.$index, scope.row)">修改资料</el-button>
             <el-button type="primary" size="mini" @click="freezeUser(scope.$index, scope.row)">冻结用户</el-button>
@@ -48,7 +48,7 @@
         </el-pagination>
       </div>
     </div>
-    <el-dialog title="新增用户" v-model="addFormVisible">
+    <el-dialog title="新增用户" :visible="addFormVisible">
       <div class="form-box">
         <el-form :model="addForm" ref="addForm" :rules="addFormRules" label-width="120px">
           <el-form-item label="账号" prop="account">
@@ -73,7 +73,7 @@
         <el-button type="primary" @click="saveAddForm('addForm')">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="修改资料" v-model="editFormVisible">
+    <el-dialog title="修改资料" :visible="editFormVisible">
       <div class="form-box">
         <el-form :model="editForm" ref="editForm" :rules="addFormRules" label-width="120px">
           <el-form-item label="账号" prop="account">
@@ -98,7 +98,7 @@
         <el-button type="primary" @click="saveEditForm('editForm')">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="修改密码" v-model="changePwdFormVisible">
+    <el-dialog title="修改密码" :visible="changePwdFormVisible">
       <div class="form-box">
         <el-form :model="changePwdForm" ref="changePwdForm" :rules="changePwdFormRules" label-width="130px">
           <el-form-item label="原密码" prop="pwd">
@@ -117,7 +117,7 @@
         <el-button type="primary" @click="saveChangePwdForm('changePwdForm')">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="分配角色" v-model="assignRoleFormVisible">
+    <el-dialog title="分配角色" :visible="assignRoleFormVisible">
       <div class="form-box">
         <el-form :model="assignRoleForm" ref="assignRoleForm"  label-width="120px">
           <el-form-item label="角色" prop="role">
@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import Check from '../../assets/js/validate.js'
+import Check from '../../libs/validate.js'
   export default {
     data() {
       var validatePwd2 = (rule, value, callback) => {

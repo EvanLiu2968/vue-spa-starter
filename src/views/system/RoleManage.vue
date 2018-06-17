@@ -49,7 +49,7 @@
         </el-pagination>
       </div>
     </div>
-    <el-dialog title="新增角色" v-model="addFormVisible">
+    <el-dialog title="新增角色" :visible="addFormVisible">
       <div class="form-box">
         <el-form :model="addForm" ref="addForm" :rules="addFormRules" label-width="120px">
           <el-form-item label="角色名称" prop="role">
@@ -71,7 +71,7 @@
         <el-button type="primary" @click="saveAddForm('addForm')">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="修改角色" v-model="editFormVisible">
+    <el-dialog title="修改角色" :visible="editFormVisible">
       <div class="form-box">
         <el-form :model="editForm" ref="editForm" :rules="addFormRules" label-width="120px">
           <el-form-item label="角色名称" prop="role">
@@ -93,7 +93,7 @@
         <el-button type="primary" @click="saveEditForm('editForm')">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="分配用户" v-model="assignRoleFormVisible">
+    <el-dialog title="分配用户" :visible="assignRoleFormVisible">
       <div class="form-box">
         <el-form :model="assignRoleForm" ref="assignRoleForm"  label-width="120px">
           <el-form-item label="角色" prop="role">
@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import Check from '../../assets/js/validate.js'
+import Check from '../../libs/validate.js'
   export default {
     data() {
       var validatePwd2 = (rule, value, callback) => {

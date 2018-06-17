@@ -8,7 +8,7 @@
       :expand-on-click-node="false"
       :render-content="renderContent">
     </el-tree>
-    <el-dialog title="修改菜单项" v-model="editMenuFormVisible">
+    <el-dialog title="修改菜单项" :visible="editMenuFormVisible">
       <div class="form-box">
         <el-form :model="editMenuForm" ref="editMenuForm"  label-width="120px">
           <el-form-item label="菜单名称" prop="label">

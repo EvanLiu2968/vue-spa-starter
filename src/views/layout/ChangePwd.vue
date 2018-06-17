@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import Check from '../../assets/js/validate.js'
+  import Check from '../../libs/validate.js'
   export default {
     data(){
       var validatePwd2 = (rule, value, callback) => {
