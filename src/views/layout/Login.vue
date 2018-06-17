@@ -46,46 +46,47 @@
 </template>
 
 <script>
-import particlesJS from 'assets/js/particles.js';
-import Home from './Home.vue';
-  export default {
-    data: function(){
-      return {
-        loginForm: {
-          username: '',
-          password: '',
-          captcha: ''
-        },
-        loginFormRules: {
-          username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
+import injector from 'web-inject'
+
+export default {
+  data: function(){
+    return {
+      loginForm: {
+        username: '',
+        password: '',
+        captcha: ''
+      },
+      loginFormRules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  methods: {
+    submitLoginForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$store.commit('updateUserinfo','/');
+        } else {
+          this.$message.error('请输入正确的用户名和密码!');
+          return false;
         }
-      }
-    },
-    methods: {
-      submitLoginForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$store.commit('updateUserinfo','/');
-          } else {
-            this.$message.error('请输入正确的用户名和密码!');
-            return false;
-          }
-        });
-      }
-    },
-    beforeMount(){
-      //window.location.href="/oauth2/login";//不做登录处理
-      // if(this.$route.query.action=='loginout'){
-      //   window.location.href=window.location.origin;
-      // }
-    },
-    mounted(){
-      //https://github.com/VincentGarreau/particles.js
+      });
+    }
+  },
+  beforeMount(){
+    //window.location.href="/oauth2/login";//不做登录处理
+    // if(this.$route.query.action=='loginout'){
+    //   window.location.href=window.location.origin;
+    // }
+  },
+  mounted(){
+    //https://github.com/VincentGarreau/particles.js
+    injector.js('https://cdn.bootcss.com/particles.js/2.0.0/particles.min.js', ()=>{
       particlesJS("particlesJS",{
         "particles": {
           "number": {
@@ -202,8 +203,10 @@ import Home from './Home.vue';
           "background_size": "cover"
         }
       });
-    }
+    })
+    
   }
+}
 </script>
 
 <style scoped>

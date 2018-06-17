@@ -9,7 +9,7 @@
       </el-header>
       <el-main>
         <el-card class="content">
-          <el-breadcrumb slot="header" separator="/">
+          <el-breadcrumb slot="header" separator="/" separator-class="el-icon-arrow-right">
             <template v-for="(item, i) in $route.matched">
               <el-breadcrumb-item v-if="item.name" :key="i"><i v-if="item.meta.icon" :class="item.meta.icon"></i>{{ item.name }}</el-breadcrumb-item>
             </template>
@@ -59,5 +59,8 @@
     /* padding:0; */
     min-height:560px;
     /* background-color: #fff; */
+  }
+  .el-breadcrumb i{
+    margin-right:4px;
   }
 </style>

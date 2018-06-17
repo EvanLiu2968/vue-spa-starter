@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
 import { MessageBox } from 'element-ui';
-import store from '../../vuex/store.js';
+import store from 'src/vuex/store';
 
 axios.defaults.withCredentials = true; //跨域cookie设置
 
