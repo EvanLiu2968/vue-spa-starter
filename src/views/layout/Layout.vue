@@ -24,18 +24,25 @@
 </template>
 
 <script>
-  import vHead from './Header.vue';
-  import vSidebar from './Sidebar.vue';
-  export default {
-    components:{
-      vHead, vSidebar
-    },
-    computed:{
-      isCollapse(){
-        return this.$store.getters.getIsCollapse;
-      }
-    }
+import vHead from './Header.vue';
+import vSidebar from './Sidebar.vue';
+import { mapState } from 'vuex'
+export default {
+  components:{
+    vHead, vSidebar
+  },
+  computed:{
+    ...mapState([
+      'isCollapse'
+    ]),
+    // ...mapState({
+    //   isCollapse(state){
+    //     return state.isCollapse
+    //   }
+    // })
+    
   }
+}
 </script>
 <style>
   .el-container{
