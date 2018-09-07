@@ -1,4 +1,4 @@
-## vue-component
+## vue-spa-starter
 
 基于Vue的SPA内容管理系统解决方案
 
