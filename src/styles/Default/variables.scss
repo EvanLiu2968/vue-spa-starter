@@ -1,0 +1,81 @@
+/* Colors
+-------------------------- */
+$color-white: #fff;
+$color-black: #000;
+
+$color-primary: #4667d5;
+
+$color-text-primary: #303133;
+$color-text-regular: #606266;
+$color-text-secondary: #909399;
+$color-text-placeholder: #c0c4cc;
+
+$color-success: #67c23a;
+$color-warning: #e6a23c;
+$color-danger: #f56c6c;
+$color-info: #909399;
+
+$color-success-light: mix($color-white, $color-success, 80%);
+$color-warning-light: mix($color-white, $color-warning, 80%);
+$color-danger-light: mix($color-white, $color-danger, 80%);
+$color-info-light: mix($color-white, $color-info, 80%);
+
+$color-success-lighter: mix($color-white, $color-success, 90%);
+$color-warning-lighter: mix($color-white, $color-warning, 90%);
+$color-danger-lighter: mix($color-white, $color-danger, 90%);
+$color-info-lighter: mix($color-white, $color-info, 90%);
+
+$color-primary-light-1: mix($color-white, $color-primary, 10%);
+$color-primary-light-2: mix($color-white, $color-primary, 20%);
+$color-primary-light-3: mix($color-white, $color-primary, 30%);
+$color-primary-light-4: mix($color-white, $color-primary, 40%);
+$color-primary-light-5: mix($color-white, $color-primary, 50%);
+$color-primary-light-6: mix($color-white, $color-primary, 60%);
+$color-primary-light-7: mix($color-white, $color-primary, 70%);
+$color-primary-light-8: mix($color-white, $color-primary, 80%);
+$color-primary-light-9: mix($color-white, $color-primary, 90%);
+// global color
+$color-primary-light: #edf1ff;
+
+$appBg: #ebedf1;
+$bgGray: #f7f9fa;
+$borderGray: #e3e3e3;
+
+$fontBlue: #3a80e9;
+$fontRed:  #ff5d5b;
+$fontYellow: #E6A23C;
+$fontGreen: #47ca88;
+$fontGray: #9c9c9c;
+
+/* navbar | sidebar
+-------------------------- */
+$navbarBgStart: #3a49b6;
+$navbarBgEnd: #5a91e3;
+
+//注：menuBg menuText menuActiveText有用于el-menu组件, 其他用于于layout.scss
+$menuBg:#fff;
+$menuText:#333;
+$menuActiveText:$color-primary;
+
+$subMenuActiveText:$color-primary; //https://github.com/ElemeFE/element/issues/12951
+$menuHover:$color-primary-light;
+$subMenuBg:#fff;
+$subMenuHover:$color-primary-light;
+$sideBarWidth: 160px;
+$menuItemHeight: 40px;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  // color
+  colorPrimary: $color-primary;
+  // navbar | sidebar
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}

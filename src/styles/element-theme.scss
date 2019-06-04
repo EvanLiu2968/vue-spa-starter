@@ -1,0 +1,41 @@
+/*
+ 重写theme-chalk主题变量
+ 具体变量列表在element-var.scss，此文件不要修改，仅供参考
+ 拷贝来源 node_modules/element-ui/packages/theme-chalk/src/common/var.scss
+ */
+@import "~THEME_VAR.scss";
+/* Colors
+-------------------------- */
+$--color-white: $color-white;
+$--color-black: $color-black;
+
+$--color-primary: $color-primary;
+
+$--color-success: $color-success;
+$--color-warning: $color-warning;
+$--color-danger: $color-danger;
+$--color-info: $color-info;
+
+$--color-text-primary: $color-text-primary;
+$--color-text-regular: $color-text-regular;
+$--color-text-secondary: $color-text-secondary;
+$--color-text-placeholder: $color-text-placeholder;
+
+/* Input
+-------------------------- */
+$--input-border-radius: 2px;
+
+/* Button
+-------------------------- */
+$--button-default-color: $--color-primary;
+$--button-default-fill: $--color-white;
+$--button-default-border: $--color-primary;
+
+$--button-mini-padding-vertical: 6px;
+$--button-mini-padding-horizontal: 12px;
+
+/* Font
+-------------------------- */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

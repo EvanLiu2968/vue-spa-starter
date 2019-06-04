@@ -1,62 +1,37 @@
-function pluralize(time, label) {
-  if (time === 1) {
-    return time + label
+/**
+ * created at 2019年4月16日11:52:00
+ *
+ */
+import { sexMap } from './dictionaryMap'
+/**
+ *
+ *
+ * @param {*} time
+ * @param {string} [format='yyyy-MM-dd HH:mm:ss']
+ * @returns
+ */
+export function dateFilter(time, format = 'yyyy-MM-dd HH:mm:ss') {
+  if (!time) {
+    return '-'
   }
-  return time + label + 's'
+  const date = new Date(time)
+  if (date instanceof Date && !isNaN(date.getTime())) {
+    return date.format(format)
+  }
+  return '-'
 }
-export function timeAgo(time) {
-  const between = Date.now() / 1000 - Number(time);
-  if (between < 3600) {
-    return pluralize(~~(between / 60), ' minute')
-  } else if (between < 86400) {
-    return pluralize(~~(between / 3600), ' hour')
-  } else {
-    return pluralize(~~(between / 86400), ' day')
-  }
-}
+/**
+ *
+ *
+ * @param {*} time
+ * @returns
+ */
+export function timeAgoFilter(time) {
+  time = +time * 1000
+  const d = new Date(time)
+  const now = Date.now()
 
-export function parseTime(time, cFormat) {
-  if (arguments.length === 0) {
-    return null;
-  }
-
-  if ((time + '').length === 10) {
-    time = +time * 1000
-  }
-
-  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
-  let date;
-  if (typeof time == 'object') {
-    date = time;
-  } else {
-    date = new Date(parseInt(time));
-  }
-  const formatObj = {
-    y: date.getFullYear(),
-    m: date.getMonth() + 1,
-    d: date.getDate(),
-    h: date.getHours(),
-    i: date.getMinutes(),
-    s: date.getSeconds(),
-    a: date.getDay()
-  };
-  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-    let value = formatObj[key];
-    if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
-    if (result.length > 0 && value < 10) {
-      value = '0' + value;
-    }
-    return value || 0;
-  });
-  return time_str;
-}
-
-export function formatTime(time, option) {
-  time = +time * 1000;
-  const d = new Date(time);
-  const now = Date.now();
-
-  const diff = (now - d) / 1000;
+  const diff = (now - d) / 1000
 
   if (diff < 30) {
     return '刚刚'
@@ -67,37 +42,47 @@ export function formatTime(time, option) {
   } else if (diff < 3600 * 24 * 2) {
     return '1天前'
   }
-  if (option) {
-    return parseTime(time, option)
-  } else {
-    return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
-  }
+  return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
 }
-
-/* 数字 格式化*/
-export function nFormatter(num, digits) {
-  const si = [
-        { value: 1E18, symbol: 'E' },
-        { value: 1E15, symbol: 'P' },
-        { value: 1E12, symbol: 'T' },
-        { value: 1E9, symbol: 'G' },
-        { value: 1E6, symbol: 'M' },
-        { value: 1E3, symbol: 'k' }
-  ];
-  for (let i = 0; i < si.length; i++) {
-    if (num >= si[i].value) {
-      return (num / si[i].value + 0.1).toFixed(digits).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, '$1') + si[i].symbol;
+/**
+ *
+ *
+ * @param {*} sex
+ * @returns
+ */
+export function sexFilter(val) {
+  return sexMap[val] || '-'
+}
+export function archivesStatusFilter(status = 0) { // 档案状态
+  const statusMap = {
+    0: '缺档',
+    1: '在库',
+    2: '调出',
+    3: '借出'
+  }
+  return statusMap[status] || '-'
+}
+export function auditStatusFilter(status = 0, type = 'icon') {
+  const statusMap = {
+    0: {
+      icon: 'el-icon-sys-shenheweisuoding',
+      title: '待审核'
+    },
+    1: {
+      icon: 'el-icon-sys-shenheyisuoding text-blue',
+      title: '审核中'
+    },
+    2: {
+      icon: 'el-icon-sys-shenhewanbiweiqueren',
+      title: '审核未通过'
+    },
+    3: {
+      icon: 'el-icon-sys-shenhewanbiyiqueren text-blue',
+      title: '审核已通过'
     }
   }
-  return num.toString();
-}
-
-export function html2Text(val) {
-  const div = document.createElement('div');
-  div.innerHTML = val;
-  return div.textContent || div.innerText;
-}
-
-export function toThousandslsFilter(num) {
-  return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','));
+  if (type == 'title') {
+    return statusMap[status] ? statusMap[status].title : ''
+  }
+  return statusMap[status] ? statusMap[status].icon : ''
 }
