@@ -1,14 +1,8 @@
 <template>
   <div class="navbar">
     <div class="app-logo">
-      <template v-if="theme === 'SouthTalent'">
-        <img :src="themeOptions.logo">
-        <h1 :class="theme" class="app-logo-title">广州南方人才市场 - 人才画像系统</h1>
-      </template>
-      <template v-else>
-        <img :src="themeOptions.logo">
-        <h1 :class="theme" class="app-logo-title">人才画像系统</h1>
-      </template>
+      <img :src="themeOptions.logo">
+      <h1 :class="theme" class="app-logo-title">后台管理系统</h1>
     </div>
     <div class="right-menu">
       <div class="right-menu-item item-message" :style="{marginRight: !message.count || message.count === 0 ? '0' : '20px'}">

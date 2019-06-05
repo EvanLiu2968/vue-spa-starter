@@ -1,16 +1,7 @@
 <template>
   <div class="login-container">
     <div :style="{ backgroundImage: `url(${themeOptions.bg})`}" class="login-bg"></div>
-    <template v-if="theme === 'SouthTalent'">
-      <h1 :class="theme" class="title">
-        <img :src="themeOptions.logo">
-        <div class="subtitle">广州南方人才市场</div>
-        人才画像系统
-      </h1>
-    </template>
-    <template v-else>
-      <h1 :class="theme" class="title"><img :src="themeOptions.logo">人才画像系统</h1>
-    </template>
+    <h1 :class="theme" class="title"><img :src="themeOptions.logo">后台管理系统</h1>
     <div class="login-form-wrap">
       <div class="login-form-bg"></div>
       <!-- <img :src="themeOptions.login" class="login-form-logo" > -->

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container bg-none">
-    <h2 class="dashboard-title">欢迎使用人才画像系统</h2>
+    <h2 class="dashboard-title">欢迎使用后台管理系统</h2>
     <div>
       <el-row :gutter="50">
         <el-col :span="24" style="margin-bottom: 30px">
