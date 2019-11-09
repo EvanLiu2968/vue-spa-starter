@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import Icon from './icon'
 import FileUpload from './file-upload/upload'
 import Table from './table'
 import VCharts from './vue-echarts'
