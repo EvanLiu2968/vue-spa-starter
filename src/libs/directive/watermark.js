@@ -87,7 +87,7 @@ function generateWatermark(el = document.body, settings = {}) {
 const watermark = {
   // 当被绑定的元素插入到 DOM 中时
   inserted: function(el, binding) {
-    const watermark_txt = binding.value || 'TCL'
+    const watermark_txt = binding.value || 'Github - EvanLiu2968'
     el.style.overflow = 'hidden'
     generateWatermark(el, { watermark_txt })
   },

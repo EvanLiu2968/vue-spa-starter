@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'cas_token'
+const TokenKey = 'token'
 
 export function getToken() {
   return Cookies.get(TokenKey)
@@ -14,33 +14,33 @@ export function removeToken() {
   return Cookies.remove(TokenKey)
 }
 
-// const crypto = require('crypto')
-// const defaultKey = 'talebase_cas2019'
-// /**
-//  *
-//  *
-//  * AES加密
-//  * @param {*} data
-//  * @param {*} [key=defaultKey]
-//  * @returns
-//  */
-// export function aesEncrypt(data, key = defaultKey) {
-//   const cipher = crypto.createCipher('aes192', key)
-//   var crypted = cipher.update(data, 'utf8', 'hex')
-//   crypted += cipher.final('hex')
-//   return crypted
+// const SECRET_KEY = 'EvanLiu2968 is a awesome developer'
+// const SECRET_IV = 'I love coding'
+
+/**
+ * crypto加密
+ * @param {*} data
+ * @param {*} [key=defaultKey]
+ * @returns
+ */
+// export function encrypt(str) {
+//   const crypto = require('crypto-js')
+//   const key = crypto.enc.Base64.parse(SECRET_KEY)
+//   const iv = crypto.enc.Base64.parse(SECRET_IV)
+//   const srcs = crypto.enc.Utf16LE.parse(str)
+//   const encrypted = crypto.TripleDES.encrypt(srcs, key, { iv: iv, mode: crypto.mode.CBC, padding: crypto.pad.Pkcs7 })
+//   return encrypted.toString()
 // }
-// /**
-//  *
-//  *
-//  * AES解密
-//  * @param {*} encrypted
-//  * @param {*} [key=defaultKey]
-//  * @returns
-//  */
-// export function aesDecrypt(encrypted, key = defaultKey) {
-//   const decipher = crypto.createDecipher('aes192', key)
-//   var decrypted = decipher.update(encrypted, 'hex', 'utf8')
-//   decrypted += decipher.final('utf8')
-//   return decrypted
+/**
+ * crypto解密
+ * @param {*} encrypted
+ * @param {*} [key=defaultKey]
+ * @returns
+ */
+// export function decrypt(str) {
+//   const crypto = require('crypto-js')
+//   const key = crypto.enc.Base64.parse(SECRET_KEY)
+//   const iv = crypto.enc.Base64.parse(SECRET_IV)
+//   const decrypted = crypto.TripleDES.decrypt(str, key, { iv: iv, mode: crypto.mode.CBC, padding: crypto.pad.Pkcs7 })
+//   return decrypted.toString(crypto.enc.Utf16LE)
 // }

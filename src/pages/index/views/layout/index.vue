@@ -4,10 +4,8 @@
     <navbar/>
     <div class="main-container">
       <sidebar class="sidebar-container"/>
-      <!-- <app-breadcrumb/> -->
       <slot>
         <app-main />
-        <!-- <app-main v-watermark="watermark" /> -->
       </slot>
     </div>
   </div>
@@ -16,7 +14,6 @@
 <script>
 import { Navbar, Sidebar, AppMain, AppBreadcrumb } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import watermark from '@/libs/directive/watermark'
 
 export default {
   name: 'Layout',
@@ -26,13 +23,8 @@ export default {
     AppBreadcrumb,
     AppMain
   },
-  directives: { watermark },
   mixins: [ResizeMixin],
   computed: {
-    watermark() {
-      const userinfo = this.$store.getters.userinfo
-      return `TCL - ${userinfo.adminName}`
-    },
     sidebar() {
       return this.$store.state.app.sidebar
     },
