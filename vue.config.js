@@ -26,7 +26,7 @@ entry.forEach(function(page) {
   pages[entryName] = {
     entry: `src/pages/${entryName}/index.js`,
     // chunks: ['chunk-vendors', 'chunk-common', 'index'],
-    template,
+    template
   }
 })
 
