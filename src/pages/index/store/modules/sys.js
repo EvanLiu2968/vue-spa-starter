@@ -1,9 +1,7 @@
 import {
+  searchSysCodeCategory,
   getMessageCount
-} from '@/api/message'
-import {
-  searchSysCodeCategory
-} from '@/api/sysCode'
+} from '@/api/system'
 
 const sys = {
   state: {

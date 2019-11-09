@@ -47,38 +47,28 @@ sh build.sh
 ```
 
 ### Node安装
+
 ```bash
-wget https://nodejs.org/dist/v8.11.1/node-v8.11.1.tar.gz
-tar zxf node-v8.11.1.tar.gz
-cd node-v8.11.1
-./configure --prefix=/usr/local/node-8.11.1
-make && make install # 开始gcc编译(近半小时到一个小时)
-# 环境配置
-ln -s /usr/local/node-8.11.1/ /usr/local/node
-vim /etc/profile
-# start 配置全局环境变量
-export NODE_HOME=/usr/local/node
-export PATH=$PATH:$NODE_HOME/bin
-# end
-source /etc/profile
+# install node
+curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+yum install -y nodejs
 node -v # 查看node版本，看到即成功
 ```
+
 ```bash
 # 需要将端口设置为外界可访问的公共端口
 firewall-cmd --permanent --zone=public --add-port=3000/tcp
 firewall-cmd --reload
 ```
+
 ### Nginx安装
 ```bash
 # download nginx package corresponding to the current system version
-
 wget  http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 
 # create nginx's yum resposity
-
 rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
 
 # download and install nginx
-
 yum install nginx
 ```

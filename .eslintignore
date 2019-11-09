@@ -1,5 +1,3 @@
-build/*.js
-config/*.js
+public
+docs
 src/assets
-server
-static

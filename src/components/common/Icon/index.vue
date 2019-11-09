@@ -1,33 +1,20 @@
 <template>
-  <i :class="iconClass">
-    <slot/>
-  </i>
+  <i></i>
 </template>
 
 <script>
-import '@/assets/icons/iconfont.css' // 项目需要内网发布只能用本地资源
+// import '@/assets/icons/iconfont.css' // 项目需要内网发布只能用本地资源
 
-// import { createRemoteCSS } from '@/libs/tool'
-// if (window !== undefined) {
-//   const iconCDN = '//at.alicdn.com/t/font_1115022_y37hho71qt.css'
-//   createRemoteCSS(iconCDN, () => {
-//     console.log(`图标已加载：${iconCDN}`)
-//   })
-// }
+import { createRemoteCSS } from '@/libs/tool'
+if (window !== undefined) {
+  const iconCDN = '//at.alicdn.com/t/font_1230772_c77apm8cbu.css'
+  createRemoteCSS(iconCDN, () => {
+    console.log(`图标已加载：${iconCDN}`)
+  })
+}
 
 export default {
-  name: 'Icon',
-  props: {
-    type: {
-      type: String,
-      default: ''
-    }
-  },
-  computed: {
-    iconClass() {
-      return this.type ? 'el-icon-' + this.type : ''
-    }
-  }
+  name: 'Icon'
 }
 </script>
 

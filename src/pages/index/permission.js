@@ -3,13 +3,25 @@ import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { Message } from 'element-ui'
-import { getToken } from '@/libs/auth' // getToken from cookie
+import { getToken, setToken } from '@/libs/auth' // getToken from cookie
 
 NProgress.configure({ showSpinner: false })// NProgress configuration
+
+const isMock = true
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  if (isMock) {
+    const token = 'MOCK_TOKEN'
+    setToken(token)
+    store.commit('SET_TOKEN', token)
+    store.commit('SET_USERINFO', {
+      id: 0,
+      avatar: '/images/mao.jpg',
+      adminName: 'mock用户'
+    })
+  }
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })

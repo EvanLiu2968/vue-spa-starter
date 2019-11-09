@@ -6,7 +6,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '../views/layout/Layout'
+import Layout from '../views/layout'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -39,41 +39,11 @@ export const constantRouterMap = [
       }
     ]
   },
-  // 消息
-  {
-    path: '/message',
-    component: Layout,
-    hidden: true,
-    meta: { title: '消息' },
-    children: [
-      {
-        path: '',
-        name: 'Message',
-        component: () => import('../views/dashboard/message'),
-        meta: { title: '消息' }
-      }
-    ]
-  },
-  // 统计分析
-  {
-    path: '/chart',
-    component: Layout,
-    // hidden: true,
-    meta: { permission: [3], title: '统计分析', icon: 'line' },
-    children: [
-      {
-        path: '',
-        name: 'Chart',
-        component: () => import('../views/chart'),
-        meta: { permission: [3], title: '统计分析', icon: 'el-icon-sys-tongjifenxi' }
-      }
-    ]
-  },
   // 系统管理
   {
     path: '/system',
     component: Layout,
-    redirect: '/system/org',
+    redirect: '/system/user',
     name: 'System',
     meta: {
       permission: [41, 44, 11, 12, 13],
@@ -92,31 +62,6 @@ export const constantRouterMap = [
         name: 'SystemGroup',
         component: () => import('../views/system/group'),
         meta: { permission: [15], title: '用户组管理' }
-      },
-      {
-        path: 'role',
-        name: 'SystemRole',
-        component: () => import('../views/system/role'),
-        meta: { permission: [12], title: '角色管理' }
-      },
-      {
-        path: 'log',
-        name: 'SystemLog',
-        component: () => import('../views/system/log'),
-        meta: { permission: [13], title: '日志查阅' }
-      }
-    ]
-  },
-
-  {
-    path: '/help',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        name: 'Help',
-        component: () => import('../views/help'),
-        meta: { title: '帮助', icon: 'el-icon-sys-bangzhu' }
       }
     ]
   },

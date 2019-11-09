@@ -3,16 +3,17 @@
 $color-white: #fff;
 $color-black: #000;
 
-$color-primary: #4667d5;
+$color-primary: #6684EC;
+$color-primary-secondary: #6684EC;
 
-$color-text-primary: #303133;
+$color-text-primary: #383838;
 $color-text-regular: #606266;
 $color-text-secondary: #909399;
 $color-text-placeholder: #c0c4cc;
 
-$color-success: #67c23a;
-$color-warning: #e6a23c;
-$color-danger: #f56c6c;
+$color-success: #75C940;
+$color-warning: #ffB726;
+$color-danger: #F56C6C;
 $color-info: #909399;
 
 $color-success-light: mix($color-white, $color-success, 80%);
@@ -37,30 +38,32 @@ $color-primary-light-9: mix($color-white, $color-primary, 90%);
 // global color
 $color-primary-light: #edf1ff;
 
-$appBg: #ebedf1;
-$bgGray: #f7f9fa;
-$borderGray: #e3e3e3;
+$appBg: #f1f1f1;
+$bgGray: #f2f2f2;
+$borderGray: #DCDFE6;
 
-$fontBlue: #3a80e9;
-$fontRed:  #ff5d5b;
-$fontYellow: #E6A23C;
-$fontGreen: #47ca88;
-$fontGray: #9c9c9c;
+$fontBlue: #6684EC;
+$fontRed:  #F56C6C;
+$fontYellow: #ffB726;
+$fontGreen: #75C940;
+$fontGray: #909399;
 
 /* navbar | sidebar
 -------------------------- */
-$navbarBgStart: #3a49b6;
-$navbarBgEnd: #5a91e3;
+$navbarBgStart: #fff;
+$navbarBgEnd: #fff;
 
 //注：menuBg menuText menuActiveText有用于el-menu组件, 其他用于于layout.scss
 $menuBg:#fff;
-$menuText:#333;
-$menuActiveText:$color-primary;
+$menuText:#808080;
+$menuActiveText:$color-text-primary;
 
-$subMenuActiveText:$color-primary; //https://github.com/ElemeFE/element/issues/12951
-$menuHover:$color-primary-light;
+$subMenuActiveText:$color-text-primary; //https://github.com/ElemeFE/element/issues/12951
+// $menuHover:$color-primary-light;
+$menuHover:#EDF7FF;
 $subMenuBg:#fff;
-$subMenuHover:$color-primary-light;
+// $subMenuHover:$color-primary-light;
+$subMenuHover:#EDF7FF;
 $sideBarWidth: 160px;
 $menuItemHeight: 40px;
 

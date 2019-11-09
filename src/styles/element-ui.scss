@@ -1,45 +1,104 @@
+@import './mixin.scss';
+@import "~THEME_VAR.scss";
 //to reset element-ui default css
-
-.el-button + .el-button {
-  margin-left: 4px;
+$color-primary: $color-primary-secondary;
+// .form
+// .el-form-item__label {
+//   color: $color-text-primary;
+// }
+// 默认元素间距为10px
+.el-button + .el-button{
+  margin-left: 10px;
 }
 .el-button--mini {
   min-width: 70px;
 }
-.el-button.is-plain {
-  color: $color-primary;
-  border-color: $color-primary;
-  &:active {
-    background: $color-primary-light-9;
+.el-button {
+  &.is-plain {
+    color: $color-primary;
+    border-color: $color-primary;
+    &:active {
+      background: mix($color-white, $color-primary, 90%);
+    }
+    &.el-button--danger {
+      color: $color-danger;
+      border-color: $color-danger;
+      background: #fff;
+      &:hover, &:active, &:focus, &:visited {
+        color: $color-danger !important;
+        background: mix($color-white, $color-danger, 90%) !important;
+      }
+    }
+    &.el-button--success {
+      color: $color-success;
+      border-color: $color-success;
+      background: #fff;
+      &:hover, &:active, &:focus, &:visited {
+        color: $color-success !important;
+        background: mix($color-white, $color-success, 90%) !important;
+      }
+    }
   }
 }
 
 .el-checkbox {
   margin-right: 20px;
 }
+.el-checkbox__label {
+  padding-left: 4px;
+}
+.el-tag {
+  margin-right: 10px;
+}
+.el-tag {
+  border-color: $color-primary;
+}
+
 // .el-button + .el-button {
 //   margin-left: 4px;
 // }
 // 给上传等特殊并排按钮
 .button-margin {
-  margin-left: 4px;
+  margin-left: 10px;
 }
 // 给上传等特殊并排按钮(前后均有button)
 .buttons-margin {
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.el-tree {
+  .el-checkbox:last-of-type {
+    margin-right: 4px;
+  }
+}
+
+// element-ui瞎更新，样式搞乱了
+.el-form-item__content {
+  margin-top: -1px;
+  // .el-input, .el-select {
+  //   margin-top: -1px;
+  // }
+  .el-select__tags {
+    .el-tag {
+      margin-bottom: 0;
+    }
+  }
 }
 .el-input__inner, .el-textarea__inner {
   transition: border-color,box-shadow .2s ease;
-  &:focus {
-    box-shadow: 0 0 0 2px mix($color-white, $color-primary, 60%);
+  vertical-align: middle;
+  // &:focus {
+  //   box-shadow: 0 0 0 2px mix($color-white, $color-primary, 60%);
+  // }
+  &::-webkit-input-placeholder, &::-webkit-input-placeholder, &::-webkit-input-placeholder {
+    color: #ccc;
   }
 }
 .el-form-item.is-error .el-input__inner, .el-form-item.is-error .el-textarea__inner {
   transition: border-color,box-shadow .2s ease;
-  &:focus {
-    box-shadow: 0 0 0 2px mix($color-white, $color-danger, 60%);
-  }
+  // &:focus {
+  //   box-shadow: 0 0 0 2px mix($color-white, $color-danger, 60%);
+  // }
 }
 
 .el-tabs--border-card {
@@ -57,9 +116,35 @@
   left: 0;
   position: relative;
   margin: 0 auto;
+  border-radius: 4px;
+  max-width: 1000px;
+  min-width: 800px;
+  margin-bottom: 10vh;
+  &.el-dialog-lg {
+    min-width: 800px;
+  }
+  .el-dialog__header {
+    padding: 10px 20px;
+    line-height: 24px;
+    border-bottom: 1px solid $borderGray;
+  }
+  .el-dialog__title {
+    font-size: 14px;
+  }
+  .el-dialog__headerbtn {
+    font-size: 22px;
+  }
+  .el-dialog__body {
+    min-height: 100px;
+  }
+  .el-dialog__footer {
+    padding: 10px 20px;
+    border-top: 1px solid $borderGray;
+    text-align: right;
+  }
   .dialog-footer {
     display: block;
-    text-align: center;
+    text-align: right;
   }
 }
 .el-dialog__body {
@@ -74,6 +159,17 @@
 
 .el-message-box__btns {
   text-align: center;
+}
+
+.el-alert--info.is-light {
+  background-color: #ffffcc;
+  color: #e2722e;
+  border: 1px solid #f2cc9f;
+  .el-alert__description {
+    margin: 0;
+    font-size: 14px;
+    color: #e2722e;
+  }
 }
 
 .el-upload {

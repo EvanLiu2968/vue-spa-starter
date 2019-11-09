@@ -104,7 +104,7 @@ export default {
     // postAction
     action: {
       type: String,
-      required: true
+      default: '/api/tds/file/uploadFile'
     },
     // formData key name
     name: {
@@ -134,7 +134,7 @@ export default {
         return {}
       }
     },
-    // 类型 img | excel | pdf | rar
+    // 类型 img | excel | pdf | rar | custom
     type: {
       type: String,
       required: false,
@@ -143,7 +143,7 @@ export default {
     // 是否显示上传进度或者loading
     showLoadingMask: {
       type: Boolean,
-      default: false
+      default: true
     },
     // 自动上传
     auto: {
@@ -167,8 +167,8 @@ export default {
         },
         'img': {
           message: '必须上传jpg .jpeg .gif .png .bmp格式的图片',
-          suffix: 'jpg,jpeg,png,image/png,image/jpeg',
-          accept: 'image/jpg,image/jpeg,image/png'
+          suffix: 'tif,gif,bmp,jpg,jpeg,png,image/png,image/jpeg',
+          accept: 'image/tif,image/gif,image/bmp,image/jpg,image/jpeg,image/png'
         },
         'excel': {
           message: '必须上传excel文件',
@@ -184,6 +184,11 @@ export default {
           message: '必须上传rar文件',
           suffix: 'rar,zip,7z',
           accept: '.rar,.zip,7z'
+        },
+        'custom': {
+          message: '必须上传docx、xls、xlsx、pptx、pdf、jpg、jpeg、png、bmp中，其中一种格式的文件',
+          suffix: 'docx,xls,xlsx,pptx,pdf,jpg,jpeg,png,image/png,image/jpeg',
+          accept: '.docx,.pptx,.pdf,image/jpg,image/jpeg,image/png,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel'
         }
       },
       idIframe: 'uploadIframe_' + id,
@@ -309,7 +314,7 @@ export default {
       xhr.open('POST', this.postAction)
       // set headers
       const headers = this.headers
-      const token = Cookies.get('cas_token')
+      const token = Cookies.get('token')
       if (token) {
         headers['accessToken'] = token
       }

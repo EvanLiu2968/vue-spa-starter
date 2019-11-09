@@ -14,11 +14,6 @@ import 'THEME.scss' // global css
 import CustomComponents from '@/components/common'
 Vue.use(CustomComponents, {})
 
-import 'echarts'
-// https://github.com/ecomfe/vue-echarts
-import VCharts from 'vue-echarts' // 引入此组件需要在webpack配置额外的babel转译
-Vue.component('v-chart', VCharts)
-
 import store from './store'
 import router from './router'
 import './permission' // permission control

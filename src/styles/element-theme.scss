@@ -3,39 +3,63 @@
  具体变量列表在element-var.scss，此文件不要修改，仅供参考
  拷贝来源 node_modules/element-ui/packages/theme-chalk/src/common/var.scss
  */
-@import "~THEME_VAR.scss";
-/* Colors
--------------------------- */
-$--color-white: $color-white;
-$--color-black: $color-black;
-
-$--color-primary: $color-primary;
-
-$--color-success: $color-success;
-$--color-warning: $color-warning;
-$--color-danger: $color-danger;
-$--color-info: $color-info;
-
-$--color-text-primary: $color-text-primary;
-$--color-text-regular: $color-text-regular;
-$--color-text-secondary: $color-text-secondary;
-$--color-text-placeholder: $color-text-placeholder;
-
-/* Input
--------------------------- */
-$--input-border-radius: 2px;
-
-/* Button
--------------------------- */
-$--button-default-color: $--color-primary;
-$--button-default-fill: $--color-white;
-$--button-default-border: $--color-primary;
-
-$--button-mini-padding-vertical: 6px;
-$--button-mini-padding-horizontal: 12px;
-
-/* Font
--------------------------- */
-$--font-path: '~element-ui/lib/theme-chalk/fonts';
-
-@import "~element-ui/packages/theme-chalk/src/index";
+ @import "~THEME_VAR.scss";
+ /* Colors
+ -------------------------- */
+ $--color-white: $color-white;
+ $--color-black: $color-black;
+ 
+ $--color-primary: $color-primary-secondary;
+ 
+ $--color-success: $color-success;
+ $--color-warning: $color-warning;
+ $--color-danger: $color-danger;
+ $--color-info: $color-info;
+ 
+ $--color-text-primary: $color-text-primary;
+ $--color-text-regular: $color-text-regular;
+ $--color-text-secondary: $color-text-secondary;
+ $--color-text-placeholder: $color-text-placeholder;
+ 
+ /* Border
+ -------------------------- */
+ // $--border-color-base: #f1f1f1;
+ // $--border-color-light: #f1f1f1;
+ // $--border-color-lighter: #f1f1f1;
+ // $--border-color-extra-light: #f2f6fc;
+ 
+ /* Input
+ -------------------------- */
+ $--input-border-radius: 2px;
+ $--input-mini-height: 30px;
+ 
+ /* Button
+ -------------------------- */
+ $--button-default-color: $--color-primary;
+ $--button-default-fill: $--color-white;
+ $--button-default-border: $--color-primary;
+ 
+ $--button-mini-padding-vertical: 8px;
+ $--button-mini-padding-horizontal: 12px;
+ 
+ /* Tag
+ -------------------------- */
+ $--tag-fill: rgba($--color-primary, 0.15);
+ $--tag-color: $--color-primary;
+ $--tag-border: $--color-primary;
+ 
+ $--tag-primary-fill: rgba($--color-primary, 0.15);
+ $--tag-primary-border: $--color-primary;
+ 
+ /* Pagination
+ -------------------------- */
+ $--pagination-font-size: 12px;
+ $--pagination-button-width: 30px;
+ $--pagination-button-height: 30px;
+ 
+ /* Font
+ -------------------------- */
+ $--font-path: '~element-ui/lib/theme-chalk/fonts';
+ 
+ @import "~element-ui/packages/theme-chalk/src/index";
+ 

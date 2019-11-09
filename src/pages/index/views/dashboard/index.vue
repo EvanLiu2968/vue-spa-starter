@@ -1,43 +1,17 @@
 <template>
-  <div class="app-container bg-none">
-    <h2 class="dashboard-title">欢迎使用后台管理系统</h2>
-    <div>
-      <el-row :gutter="50">
-        <el-col :span="24" style="margin-bottom: 30px">
-          <chart-dangan></chart-dangan>
-        </el-col>
-        <el-col :span="24" style="margin-bottom: 30px">
-          <chart-chayue></chart-chayue>
-        </el-col>
-      </el-row>
-    </div>
+  <div class="app-container">
+    <h2 class="dashboard-title">欢迎使用！</h2>
+    <v-chart :options="chartData"/>
   </div>
 </template>
 
 <script>
-import ChartDangan from '../chart/modules/dangan'
-import ChartChayue from '../chart/modules/chayue'
-import {
-  getDashboardMessage
-} from '@/api/message'
-import { jumpToMessageDetail } from './modules/message'
-import { dateFilter } from '@/libs/filter'
+import { StockData } from './mockData'
 
 export default {
-  components: {
-    ChartDangan,
-    ChartChayue
-  },
-  filters: {
-    dateFilter
-  },
   data() {
     return {
-      borad: {
-        todo: [],
-        done: [],
-        message: []
-      }
+      chartData: StockData
     }
   },
   mounted() {
@@ -45,16 +19,7 @@ export default {
   },
   methods: {
     fetchData() {
-      getDashboardMessage().then(res => {
-        this.borad = {
-          todo: res.response.homePageDisplay.affairComissionResponses,
-          done: res.response.homePageDisplay.comissionResponses,
-          message: res.response.homePageDisplay.messageAlertResponses
-        }
-      })
-    },
-    jumpToPage(item) {
-      jumpToMessageDetail(item)
+      //
     }
   }
 }

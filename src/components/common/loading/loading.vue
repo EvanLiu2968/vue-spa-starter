@@ -67,7 +67,7 @@ export default {
           right: 0,
           bottom: 0,
           left: 0,
-          zIndex: 99999
+          zIndex: 999
         }
       } else {
         this.enableScroll()

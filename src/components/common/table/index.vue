@@ -1,12 +1,14 @@
 <template>
-  <div class="app-table">
-    <div class="app-table-tools clearfix">
-      <div v-if="rowSelect" class="app-table-left">
+  <div class="app-table" :class="{'app-table--hidden-header':hiddenHeader}">
+    <div v-if="$slots['header-left'] || $slots['header-right']" class="app-table-tools clearfix">
+      <div class="app-table-left">
         <slot name="header-left">
-          <span v-if="allSelect" style="padding-left: 14px;">
-            <el-checkbox v-model="allSelected" @change="handleAllSelection">所有页</el-checkbox>
-          </span>
-          <span class="app-table-selected">已选<i>{{ multipleSelection.length }}</i>项</span>
+          <template v-if="rowSelect">
+            <span v-if="allSelect" style="padding-left: 14px;">
+              <el-checkbox v-model="allSelected" @change="handleAllSelection">所有页</el-checkbox>
+            </span>
+            <span class="app-table-selected">已选<i>{{ multipleSelection.length }}</i>项</span>
+          </template>
         </slot>
       </div>
       <div class="app-table-right">
@@ -15,17 +17,21 @@
     </div>
     <el-table
       ref="table"
-      :stripe="true"
+      :stripe="stripe"
       :data="data"
+      :border="border"
+      :row-key="rowKey"
       v-bind="otherProps"
       v-on="otherListeners"
       style="width: 100%"
+      size="medium"
+      :span-method="spanMethod"
       @selection-change="handleSelectionChange">
-      <el-table-column v-if="rowSelect" type="selection" width="55" :selectable="selectable"></el-table-column>
+      <el-table-column v-if="rowSelect" type="selection" :reserve-selection="reserveSelect" width="36" :selectable="selectable"></el-table-column>
       <slot></slot>
       <div slot="empty">暂无数据</div>
     </el-table>
-    <div class="app-table-tools">
+    <div class="app-table-tools" v-if="!hiddenFooter">
       <div class="app-table-left">
         <span class="text-gray" style="margin-right:20px">合计条数：{{ total }}条</span>
         <slot name="footer-left"></slot>
@@ -35,9 +41,11 @@
           v-if="pagination"
           :pager-count="5"
           :current-page="currentPage"
-          :page-sizes="[10, 20, 50, 100]"
+          :page-sizes="pageSizes"
           :page-size="pageSize"
           :total="total"
+          prev-text="上一页"
+          next-text="下一页"
           layout="prev, pager, next, sizes, jumper"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange">
@@ -57,18 +65,32 @@ export default {
         return {}
       }
     },
+    pageSizes: {
+      type: Array,
+      default() {
+        return [10, 20, 50, 100]
+      }
+    },
     selectable: {
       type: Function,
       default() {
-        return function() { return true }
+        return function(row, i) { return true }
       }
+    },
+    rowKey: {
+      type: String,
+      default: 'id'
     },
     rowSelect: {
       type: Boolean,
       default: true
     },
+    reserveSelect: {
+      type: Boolean,
+      default: true
+    },
     selectType: {
-      type: String,
+      type: String, // 'multiple' or 'single'
       default: 'multiple'
     },
     allSelect: {
@@ -78,6 +100,28 @@ export default {
     pagination: {
       type: Boolean,
       default: true
+    },
+    stripe: {
+      type: Boolean,
+      default: true
+    },
+    border: {
+      type: Boolean,
+      default: true
+    },
+    hiddenHeader: {
+      type: Boolean,
+      default: false
+    },
+    hiddenFooter: {
+      type: Boolean,
+      default: false
+    },
+    spanMethod: {
+      type: Function,
+      default() {
+        return function() { return true }
+      }
     }
   },
   data() {
@@ -86,6 +130,7 @@ export default {
       pageSize: 10,
       data: [],
       total: 0,
+      shouldClearSelection: true,
       allSelected: false,
       multipleSelection: []
     }
@@ -93,7 +138,7 @@ export default {
   computed: {
     otherProps() {
       // eslint-disable-next-line no-unused-vars
-      const { tableData, total, rowSelect, selectType, allSelect, pagination, ...others } = this.$attrs
+      const { tableData, total, rowSelect, selectType, allSelect, pagination, stripe, border, ...others } = this.$attrs
       return others
     },
     otherListeners() {
@@ -106,10 +151,16 @@ export default {
     tableData: {
       handler(val, oldVal) {
         val = val || {}
+        // 控制仅在分页时保留勾选
+        if (this.shouldClearSelection && this.$refs.table) {
+          this.$refs.table.clearSelection()
+        }
+        this.shouldClearSelection = true
+
         this.currentPage = val.current || 1
         this.pageSize = val.size || 10
         this.data = val.records || []
-        this.total = val.total || 0
+        this.total = val.total || this.data.length
       },
       immediate: true,
       deep: true
@@ -137,9 +188,14 @@ export default {
     clearSelection() {
       this.$refs.table.clearSelection()
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val
-      this.$emit('selectionChange', val)
+    handleSelectionChange(selection, current, checked) {
+      // 目前该事件没有返回current 和 checked, 无法做单选功能
+      // if (this.selectType === 'single' && this.checked) {
+      //   this.$refs.table.clearSelection()
+      //   this.$refs.table.toggleRowSelection(current, true)
+      // }
+      this.multipleSelection = selection
+      this.$emit('selectionChange', selection)
     },
     handleSizeChange(val) {
       this.pageSize = val
@@ -151,6 +207,7 @@ export default {
     },
     handlePagerChange() {
       const { currentPage, pageSize } = this
+      this.shouldClearSelection = false
       this.$emit('pagerChange', {
         page: currentPage,
         size: pageSize
@@ -162,6 +219,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
 @import "~THEME_VAR.scss";
+$color-primary: $color-primary-secondary;
 .app-table {
   position: relative;
   margin-bottom: 20px;
@@ -186,14 +244,53 @@ export default {
   &-right {
     float: right;
   }
+  &.app-table--hidden-header {
+    .el-table__header-wrapper {
+      display: none;
+    }
+  }
+  .el-table {
+    border-radius: 4px;
+    // thead th {
+    //   border-top: 1px solid #EBEEF5;
+    // }
+    // &.el-table--border {
+    //   thead th {
+    //     border-top: none;
+    //   }
+    // }
+    // fix： 复选框出现省略号
+    .el-table-column--selection .cell {
+      // overflow: hidden;
+      text-overflow: clip;
+      // white-space: normal;
+      // word-break: break-all;
+    }
+  }
   .el-table thead th {
-    color: #333;
-    font-weight: bold;
-    background: #e6e7eb;
-    // border-bottom: 1px solid #ebeef5;
-    border-right: 1px solid #ebeef5;
+    font-weight: normal;
+    background: #fafafa;
+    color: $color-text-primary;
+    // border-top: 1px solid #ebeef5;
+  }
+  .el-table td {
+    color: $color-text-secondary;
+  }
+  .el-table__row.expanded.hover-row + tr{
+    & > td {
+      background: #F5F7FA !important;
+    }
   }
   .el-pagination {
+    font-weight: normal;
+    line-height: 28px;
+    .btn-prev, .btn-next {
+      padding: 0 6px;
+      & > span {
+        height: auto;
+        line-height: 28px;
+      }
+    }
     .btn-prev {
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
@@ -207,18 +304,22 @@ export default {
   }
   .el-pager {
     li {
+      line-height: 28px;
       border-top: 1px solid #e3e3e3;
       border-right: 1px solid #e3e3e3;
       border-bottom: 1px solid #e3e3e3;
       &:last-child {
         border-right: none;
       }
-      &.active{
+      &.active {
         color: #fff;
         border-color: $color-primary;
         background: $color-primary;
       }
     }
+  }
+  .el-pagination__sizes, .el-pagination__jump {
+    margin-top: -2px;
   }
   .el-pagination__jump {
     margin-left: 0;

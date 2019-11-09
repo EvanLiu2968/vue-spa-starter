@@ -59,20 +59,7 @@ export default {
       if (this.item.hidden) {
         return this.item.hidden
       }
-      if (this.item.meta && this.item.meta.permission) {
-        // return false
-        const { userinfo } = this.$store.getters
-        // console.log('permission:' + this.item.meta.permission)
-        for (let i = 0; i < this.item.meta.permission.length; i++) {
-          if (userinfo.permissionCodes.find(v => v.recId == this.item.meta.permission[i])) {
-            // console.log('recId:' + this.item.meta.permission[i])
-            return false
-          }
-        }
-        return true
-      } else {
-        return this.item.hidden
-      }
+      return false
     }
   },
   methods: {

@@ -17,12 +17,12 @@ export default {
   computed: {
     showFullscreen() {
       const ua = window.navigator.userAgent.toLowerCase() // 360兼容模式有奇怪的bug，不好判定是360，所以非chrome核都禁用了
-      console.log(ua)
-      return ua.indexOf('chrome') > 1
-      // if (ua.indexOf('compatible') !== -1) {
-      //   return false
-      // }
-      // return !!screenfull.enabled
+      // console.log(ua)
+      // return ua.indexOf('chrome') > 1
+      if (ua.indexOf('compatible') !== -1) { // 只能提示用户不要使用兼容模式了
+        return false
+      }
+      return !!screenfull.enabled
     }
   },
   mounted() {

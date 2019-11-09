@@ -1,13 +1,15 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import store from '@/pages/index/store'
-import { getToken } from '@/libs/auth'
+import { getToken, removeToken } from '@/libs/auth'
 
 import Loading from '@/components/common/loading'
 
 let instance
 
+// TODO: 应该将每个需要loading的请求加进队列，请求结束移除队列，当队列为空时才关闭loading
+const loadingStack = []
 const showLoading = () => {
+  // loadingStack.push('Mr.Loading')
   instance = instance || Loading({
     type: 'swell',
     text: '',
@@ -17,29 +19,61 @@ const showLoading = () => {
   instance.show()
 }
 const hideLoading = () => {
-  if (instance) {
+  // loadingStack.pop()
+  if (instance && loadingStack.length === 0) {
     instance.hide()
   }
 }
 
+// 统一配置error message
+const errorMessage = {
+  200: '请求成功',
+  201: '操作成功',
+  202: '请求已经进入后台任务',
+  204: '删除数据成功',
+  400: '发出的请求有错误，服务器没有进行新建或修改数据的操作',
+  401: '用户没有权限',
+  403: '访问被禁止',
+  404: '发出的请求针对的是不存在的记录，服务器没有进行操作',
+  406: '请求的格式不可得',
+  410: '请求的资源被永久删除',
+  422: '提交验证错误。',
+  500: '服务器错误',
+  502: '网关错误',
+  503: '服务不可用，服务器暂时过载或维护',
+  504: '网关超时'
+}
+
 // 创建axios实例
 const service = axios.create({
-  baseURL: '/api', // api 的 base_url
-  timeout: 20000 // 因图片操作超时，设置为20s，后续根据业务调整
+  withCredentials: true, // 授权登录需要cookie来获取session
+  baseURL: '/api',
+  timeout: 20000
 })
 
 // request拦截器
 service.interceptors.request.use(
   config => {
-    if (!config.headers['accessToken'] && store.getters.token) {
-      config.headers['accessToken'] = getToken() // 后台接口令牌
+    const token = getToken()
+    if (!config.headers['accessToken'] && token) {
+      config.headers['accessToken'] = token // 后台接口令牌
     }
     if (config.showLoading) {
       showLoading()
     }
+    // ie get请求强制缓存，加上时间戳防止ie缓存
+    if (config.method == 'get') {
+      if (!config.params) {
+        config.params = {}
+      } else if (typeof config.params !== 'object') {
+        console.error('request params should be a Object.')
+      }
+      config.params['timestamp'] = new Date().getTime()
+    }
     return config
   },
   error => {
+    hideLoading()
     // Do something with request error
     console.log(error) // for debug
     Promise.reject(error)
@@ -55,27 +89,33 @@ service.interceptors.response.use(
      */
     const res = response.data
     if (res.code !== 0) {
-      Message({
-        message: res.message,
-        type: 'error',
-        duration: 3 * 1000
-      })
-
-      // 403:非法的token; 404:其他客户端登录了;  405:Token 过期了;
-      if (res.code === 405) {
-        store.dispatch('FedLogOut').then(() => {
-          window.location.reload()
+      // 10002:无效的token
+      if (res.code === 10002) {
+        // store.dispatch('FedLogOut').then(() => {
+        //   window.location.reload()
+        // })
+        removeToken()
+        window.location.reload()
+      } else {
+        Message({
+          message: res.message,
+          type: 'error' || '服务器错误',
+          duration: 3 * 1000
         })
       }
-      return Promise.reject('error')
+      return Promise.reject(res)
     } else {
       return response.data
     }
   },
   error => {
-    console.log('error:' + error) // for debug
+    hideLoading()
+    // console.log(error) // for debug
+    const e = JSON.parse(JSON.stringify(error))
+    // e.response.status为请求status
+    const message = errorMessage[e.response.status] || e.response.statusText || '服务器错误'
     Message({
-      message: error.message,
+      message,
       type: 'error',
       duration: 5 * 1000
     })

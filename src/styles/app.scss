@@ -1,18 +1,23 @@
 @import './mixin.scss';
 @import "~THEME_VAR.scss";
+
+$color-primary: $color-primary-secondary;
 // 全局样式
 html {
   height: 100%;
   font-size: 14px;
 }
 body {
+  min-width: 1280px;
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  // font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: PingFang SC, Microsoft YaHei, Arial, sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
+  color: $color-text-primary;
   &.el-popup-parent--hidden {
     overflow-y: hidden;
   }
@@ -32,22 +37,31 @@ a,
 a:focus,
 a:hover {
   cursor: pointer;
-  color: $color-primary;
+  color: $fontBlue;
   text-decoration: none;
 }
-a.link {
-  text-decoration: underline;
+.link {
+  color: $color-primary;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .clearfix {
-  &:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-  }
+  @include clearfix()
+}
+
+.box-shadow-base {
+  @include box-shadow('base')
+}
+.box-shadow-light {
+  @include box-shadow()
+}
+
+.center-block {
+  display: block;
+  margin: 0 auto;
 }
 
 .pull-left {
@@ -60,31 +74,43 @@ a.link {
   cursor: pointer;
 }
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
-// color
-.text-green {
-  color: $fontGreen;
+// text theme
+.text-regular {
+  color: $color-text-regular !important;
 }
-.text-blue {
-  color: $fontBlue;
+.text-secondary {
+  color: $color-text-secondary !important;
 }
-.text-yellow {
-  color: $fontYellow;
+.font-primary, .text-primary {
+  color: $color-text-primary !important;
 }
-.text-red {
-  color: $fontRed;
+.font-green, .text-green, .text-success {
+  color: $fontGreen !important;
 }
-.text-gray {
-  color: $fontGray;
+.font-blue, .text-blue {
+  color: $fontBlue !important;
 }
-// size
+.font-yellow, .text-yellow, .text-warning {
+  color: $fontYellow !important;
+}
+.font-red, .text-red, .text-danger {
+  color: $fontRed !important;
+}
+.font-gray, .text-gray, .text-disable {
+  color: $fontGray !important;
+}
+// text size
+.text-mini, .font-mini {
+  font-size: 12px;
+}
 .text-strong {
   font-weight: bold;
 }
@@ -94,8 +120,17 @@ a.link {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.font-mini {
-  font-size: 12px;
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.text-ellipsis-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .scrollBar {
   overflow: auto;
@@ -117,6 +152,9 @@ a.link {
   border: 1px solid $borderGray !important;
 }
 
+.block {
+  display: block !important;
+}
 .inline {
   display: inline-block !important;
 }
@@ -143,6 +181,61 @@ a.link {
   background: transparent !important;
 }
 
+// tag形式的checkbox
+.app-checkbox-tag {
+  // .el-checkbox + .el-checkbox {
+  //   margin-left: 10px;
+  // }
+  .el-checkbox {
+    padding: 4px 12px;
+    border: 1px solid #b1b1b1;
+    border-radius: 4px;
+    overflow: hidden;
+    color: #b1b1b1;
+    line-height: 1;
+    margin-right: 10px;
+    &.is-checked {
+      border-color: $color-primary;
+      &:before {
+        content: '';
+        position: absolute;
+        right: -3px;
+        bottom: 0px;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-right: 14px solid $color-primary;
+        border-left: 8px solid transparent;
+        border-bottom: 9px solid $color-primary;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        right: 1px;
+        bottom: 5px;
+        width: 8px;
+        height: 3px;
+        border-top: none;
+        border-right: none;
+        border-left: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        transform: rotate(-50deg);
+        -ms-transform: rotate(-50deg);
+        -moz-transform: rotate(-50deg);
+        -webkit-transform: rotate(-50deg);
+        -o-transform: rotate(-50deg);
+      }
+    }
+    .el-checkbox__input {
+      display: none !important;
+    }
+    .el-checkbox__label {
+      padding-left: 0;
+      font-size: 12px;
+    }
+  }
+}
+
 // tag形式的radio
 .app-radio-tag {
   // .el-radio + .el-radio {
@@ -150,7 +243,7 @@ a.link {
   // }
   .el-radio {
     padding: 6px 16px;
-    border: 1px solid transparent;
+    border: 1px solid #b1b1b1;
     border-radius: 4px;
     overflow: hidden;
     color: #b1b1b1;
@@ -205,6 +298,13 @@ a.link {
   }
 }
 
+.table-btn-group {
+  display: inline-block;
+  .el-button--text {
+    min-width: auto !important;
+  }
+}
+
 .img-responsive {
   width: 100%;
   height: auto;
@@ -242,16 +342,29 @@ a.link {
   }
 }
 
+.table-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
 // chart
+.echarts {
+  width: 100%;
+  height: 100%;
+}
 .chartWrap {
   position: relative;
   padding: 15px;
   background: #fff;
-  border: 1px solid #e1e1e1;
+  margin-bottom: 16px;
   &-title {
     padding-left: 6px;
-    font-size: 16px;
-    font-weight: bold;
+    border-left: 4px solid $color-primary;
+    font-size: 14px;
+    line-height: 16px;
     margin-bottom: 10px;
   }
   .echarts {
@@ -262,7 +375,6 @@ a.link {
     position: absolute;
     top: 10px;
     height: 28px;
-    width: 100%;
     padding-left: 80px;
   }
 }
@@ -270,30 +382,19 @@ a.link {
 .tree-scroll {
   position: relative;
   height: 100%;
-  padding-top: 20px;
   .tree-toggle {
-    // display: none;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 40px;
-    margin-left: -20px;
-    margin-top: -1px;
-    height: 16px;
-    line-height: 16px;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid $borderGray;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background: $bgGray;
-    z-index: 99;
     cursor:pointer;
+  }
+  .tree-toggle-row {
+    position: relative;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
   }
 }
 .tree-catalog {
   font-size: 12px;
-  background: #f7f9fa !important;
   .el-tree-node__content {
     padding:0 10px;
     &:hover {
@@ -306,29 +407,6 @@ a.link {
   .tree-file-icon {
     font-size: 14px;
     margin-right: 6px;
-  }
-}
-
-// tag
-.app-tag {
-  display: inline-block;
-  font-size: 12px;
-  padding: 4px 6px !important;
-  line-height: 1;
-  border-radius: 10px;
-  background: $fontBlue;
-  color: #fff;
-  &-success {
-    background: $fontGreen;
-    color: #fff;
-  }
-  &-warning {
-    background: $fontYellow;
-    color: #fff;
-  }
-  &-danger {
-    background: $fontRed;
-    color: #fff;
   }
 }
 
@@ -351,21 +429,53 @@ a.link {
     color: #f56c6c;
   }
 }
-// 档案采集/审核头部
-.archive-head {
-  position: relative;
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 16px;
-  border: 1px solid $borderGray;
+
+// 下拉组件底部
+.app-dropdown-menu-footer {
+  display: block;
+  text-align: center;
+  padding: 10px 20px;
 }
+
 .btn-back {
   margin-right: 10px;
   color: $color-primary;
   cursor: pointer;
 }
-// 校验结果清单
-.valid-message {
-  line-height: 1.8;
-  white-space: pre-wrap;
+// 敬请期待
+.p-modules-await {
+  text-align: center;
+  color: $color-text-secondary;
+  font-size: 22px;
+  line-height: 90px;
+}
+// 竖向步骤条
+.step-item{
+  overflow: hidden;
+  .step-item-left{
+    float: left;
+    .circle{
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      border: 2px solid $color-primary;
+      color: $color-primary;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      margin-right: 15px;
+    }
+    .line{
+      height: 50px;
+      width: 1px;
+      border: 1px dashed $color-primary;
+      margin: 10px 15px;
+    }
+  }
+  .step-content{
+    float: left;
+    .step1-txt{
+      margin-bottom: 10px;
+    }
+  }
 }

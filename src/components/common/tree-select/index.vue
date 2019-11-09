@@ -63,7 +63,7 @@ export default {
       type: Object,
       default() {
         return {
-          key: 'recId',
+          key: 'id',
           data: []
         }
       }
@@ -116,7 +116,7 @@ export default {
       if (data.parentId !== 0) {
         this.selectedNode = node
         this.selectedData = data
-        this.$emit('input', data.recId)
+        this.$emit('input', data.id)
         this.$refs.dropdown.visible = false
       }
     },

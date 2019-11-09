@@ -23,13 +23,6 @@
           <el-radio :label="1">禁用</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="锁定状态">
-        <el-radio-group v-model="query.lockStatus" class="app-radio-tag" @change="fetchData">
-          <el-radio label="">全部</el-radio>
-          <el-radio :label="0">未锁定</el-radio>
-          <el-radio :label="1">已锁定</el-radio>
-        </el-radio-group>
-      </el-form-item>
     </el-form>
     <app-table :table-data="tableData" :row-select="false" @pagerChange="pagerChange">
       <el-table-column prop="adminAccount" label="帐号" width="120"></el-table-column>
@@ -44,11 +37,6 @@
       <el-table-column prop="adminStatus" label="启用状态" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.adminStatus === 0 ? '已启用' : '已禁用' }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="lockStatus" label="锁定状态" width="80">
-        <template slot-scope="scope">
-          <span>{{ scope.row.lockStatus === 1 ? '已锁定' : '未锁定' }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="recId" label="操作">

@@ -5,7 +5,7 @@
   // 主体区域 Main container
   .main-container {
     position: relative;
-    padding-top: 85px;
+    padding-top: 45px;
     min-height: 100%;
     transition: margin-left .28s;
     margin-left: $sideBarWidth;
@@ -14,14 +14,15 @@
   // 内容区
   .app-main {
     position: relative;
-    padding: 16px;
-    min-height: calc(100vh - 85px);
+    padding: 20px;
+    min-height: calc(100vh - 45px);
   }
   .app-container {
     position: relative;
-    padding: 16px;
+    padding: 20px;
     min-height: 100%;
     background: #fff;
+    border-radius: 4px;
   }
   .app-content {
     position: relative;
@@ -36,19 +37,26 @@
   }
 
   .app-logo {
-    position: relative;
-    margin: 0;
-    padding-left: 46px;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    width: $sideBarWidth;
+    height: 45px;
+    transition: width .28s;
+    text-align: center;
+    line-height: 45px;
+    color: $color-primary;
     img {
       position: absolute;
-      left: 0;
-      top: 4px;
-      height: 36px;
+      left: 10px;
+      top: 10px;
+      height: 25px;
       width: auto;
     }
     &-title {
       height: 45px;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 45px;
       font-weight: bold;
     }
@@ -60,19 +68,24 @@
     left:0;
     top: 0;
     padding: 0 16px;
+    padding-left: $sideBarWidth;
+    transition: padding-left .28s;
     height: 45px;
-    // box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
-    color: #fff;
+    box-shadow:0px 5px 10px rgba(170,170,170,0.1);
+    // color: #fff;
     background: $navbarBgStart;
     background: linear-gradient(to right,$navbarBgStart,$navbarBgEnd);
     z-index: 1002;
+    a {
+      color: #808080;
+    }
     .right-menu {
       position: absolute;
       top: 0;
       right: 16px;
       height: 100%;
       height: 45px;
-
+      color: #808080;
       &:focus {
         outline: none;
       }
@@ -80,14 +93,13 @@
       .right-menu-item {
         display: inline-block;
         padding: 0 8px;
-        padding-top: 14px;
+        padding-top: 10px;
         height: 100%;
-        font-size: 18px;
+        font-size: 16px;
         vertical-align: text-bottom;
         cursor: pointer;
         &.item-message {
-          font-size: 20px;
-          padding-top: 12px;
+          padding-top: 9px;
           .el-badge__content {
             height: 16px;
             line-height: 16px;
@@ -95,16 +107,23 @@
           }
         }
       }
+      .el-dropdown {
+        color: #808080;
+      }
       .avatar-container {
         position: relative;
-        margin-left: 30px;
-        color: #fff;
+        // color: #fff;
         padding-right: 20px;
+        padding-left: 10px;
         line-height: 45px;
         .avatar-wrapper {
           position: relative;
+          padding-left: 40px;
+          height: 45px;
           cursor: pointer;
           .user-avatar {
+            position: absolute;
+            left: 0;
             display: inline-block;
             margin-right: 6px;
             margin-top: 5px;
@@ -137,7 +156,7 @@
   }
   .hamburger-container {
     line-height: 50px;
-    height: 40px;
+    height: 45px;
     float: left;
     padding: 0 10px;
   }
@@ -154,7 +173,8 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-
+    font-size: 14px;
+    box-shadow:0px 12px 24px rgba(0,0,0,0.16);
     //reset element-ui css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -183,30 +203,40 @@
     }
 
     .menu-icon {
+      color: $color-text-primary;
       font-size: 16px;
       margin-right: 10px;
       vertical-align: middle !important;
     }
 
     .el-scrollbar__view {
-      padding-top: 45px;
+      padding-top: 95px; // 去掉toggle45px
     }
 
     .el-menu {
       border: none;
       height: 100%;
       width: 100% !important;
+      // border-right: 1px solid $borderGray;
     }
     .el-menu-item {
       border-right: 4px solid transparent !important;
     }
     .el-menu-item, .el-submenu__title, .el-submenu .el-menu-item {
+      color: #808080;
       height: $menuItemHeight;
       line-height: $menuItemHeight;
+      .menu-icon {
+        color: $menuText !important;
+      }
     }
     .el-menu-item.is-active {
+      color: $color-primary !important;
       background-color: $subMenuHover !important;
-      border-right: 4px solid $menuActiveText !important;
+      // border-right: 3px solid $menuActiveText !important;
+      .menu-icon {
+        color: $color-primary !important;
+      }
     }
 
     // menu hover
@@ -239,7 +269,12 @@
     .sidebar-container {
       width: 54px !important;
     }
-
+    // .navbar {
+    //   padding-left: 54px;
+    // }
+    // .app-logo {
+    //   width: 54px;
+    // }
     .main-container {
       margin-left: 54px;
     }
