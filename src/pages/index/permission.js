@@ -12,6 +12,7 @@ const isMock = true
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  // mock login, if you has login apis, you can remove it.
   if (isMock) {
     const token = 'MOCK_TOKEN'
     setToken(token)
@@ -21,7 +22,12 @@ router.beforeEach((to, from, next) => {
       avatar: '/images/mao.jpg',
       adminName: 'mock用户'
     })
+    if (whiteList.indexOf(to.path) !== -1) {
+      next()
+      return
+    }
   }
+
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })
@@ -44,7 +50,6 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
-      console.log(to)
       next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
       NProgress.done()
     }

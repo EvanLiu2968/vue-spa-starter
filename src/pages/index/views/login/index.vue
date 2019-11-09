@@ -1,10 +1,12 @@
 <template>
   <div class="login-container">
-    <div :style="{ backgroundImage: `url(${themeOptions.bg})`}" class="login-bg"></div>
-    <h1 :class="theme" class="title"><img :src="themeOptions.logo">后台管理系统</h1>
+    <div class="login-bg"></div>
+    <h1 class="title">
+      <img src="/images/logo-text.png">
+      <!-- 后台管理系统 -->
+    </h1>
     <div class="login-form-wrap">
       <div class="login-form-bg"></div>
-      <!-- <img :src="themeOptions.login" class="login-form-logo" > -->
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
         <el-form-item prop="adminAccount">
           <span class="svg-container">
@@ -31,21 +33,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div class="app-list">
-      <a class="app-item" href="/submitBrowse">
-        <i class="el-icon-sys-shenqing"></i>
-        <p>申请查、借阅</p>
-      </a>
-      <a class="app-item" href="/browse">
-        <i class="el-icon-sys-chayueyuanjuan"></i>
-        <p>查阅档案</p>
-      </a>
-      <a class="app-item" href="/submitMaterial">
-        <i class="el-icon-sys-danganguanli"></i>
-        <p>上报材料</p>
-      </a>
-    </div>
-    <!-- <p v-if="theme !== 'SouthTalent'" class="copyright">©2003 - 2019 TaleBase. All Rights Reserved. 倍智版权所有</p> -->
+    <p class="copyright">© 2014 - {{ new Date().getFullYear() }} EvanLiu2968. All Rights Reserved.</p>
   </div>
 </template>
 
@@ -55,8 +43,6 @@ export default {
   name: 'Login',
   data() {
     return {
-      // eslint-disable-next-line no-undef
-      theme: THEME,
       loginForm: {
         adminAccount: '',
         adminPwd: ''
@@ -68,15 +54,6 @@ export default {
       loading: false,
       pwdType: 'password',
       redirect: undefined
-    }
-  },
-  computed: {
-    themeOptions() {
-      return {
-        login: `/static/images/${this.theme}/login.png`,
-        logo: `/static/images/${this.theme}/logo.png`,
-        bg: `/static/images/${this.theme}/bg.jpg`
-      }
     }
   },
   watch: {
@@ -170,7 +147,7 @@ export default {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: #fff;
+  background-color: #e0e2ea;
   .login-bg {
     position: fixed;
     top: 20%;
@@ -180,7 +157,6 @@ export default {
     height: 60%;
     z-index: -10;
     zoom: 1;
-    background-color: #fff;
     background-repeat: no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
@@ -197,30 +173,15 @@ export default {
   .title {
     position: absolute;
     top: 20%;
-    display: inline-block;
-    padding-left: 60px;
-    font-size: 38px;
-    color: #4667d5;
-    left: 50%;
-    margin-left: -200px;
+    width: 100%;
+    font-size: 36px;
+    color: $color-primary;
     font-weight: bold;
     img {
-      position: absolute;
-      top: -6px;
-      left: 0;
-    }
-    &.SouthTalent {
-      color: #333;
-      top: 16%;
-      padding-left: 100px;
-      .subtitle {
-        margin-bottom: 8px;
-        font-size: 24px;
-        font-weight: normal;
-      }
-      img {
-        top: -4px;
-      }
+      display: block;
+      margin: 0 auto;
+      height: 40px;
+      width: auto;
     }
   }
   .login-form-wrap {
@@ -256,10 +217,9 @@ export default {
   }
   .copyright {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     width: 100%;
-    margin-top: 300px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     text-align: center;
     color: #999;
   }
