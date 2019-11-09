@@ -68,11 +68,8 @@ nginx配置地址: cd /etc/nginx/vhost
 - `https://blog.csdn.net/baidu_22254181/article/details/82594072`
 - 目前采用AES对称加密，`~/src/libs/auth.js`
 
-### webapck plugin坑
-- `script-ext-html-webpack-plugin`(给依赖js加上defer async等)依赖html-webpack-plugin版本，未知错误，执行顺序不明，去除
-- `circular-dependency-plugin`(检测循环引用)，有时有用，有时没用，玄学
-- babel默认不转node_modules里的文件，
+### webapck
+
+- babel默认不转node_modules里的文件，需要在`~vue.config.js/transpileDependencies`声明
 - `new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)`去除其他语言包(压缩包300多kb)
 - `echarts`单个图表引入太麻烦(源码2M+,压缩包600kb)采用在html中引入js，避免每次打包
-
-总结：webpack的plugin慎用，尽量减少plugin使用，plugin的执行顺序、其他plugin运行影响导致打包过程完全黑盒，一般打包失败很可能内存溢出或闪退，错误信息也没有，根本无法排查
