@@ -2,6 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
+const webpack = require('webpack')
 
 function resolve(dir) {
   return path.join(__dirname, './', dir)
@@ -34,6 +35,11 @@ module.exports = {
   pages,
   // publicPath: process.env.NODE_ENV === 'production' ? './dist/' : '',
   outputDir: 'dist',
+  configureWebpack: {
+    plugins: [
+      new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)
+    ]
+  },
   chainWebpack: config => {
     // 移除 prefetch 插件
     config.plugins.delete('prefetch-index')
@@ -43,6 +49,8 @@ module.exports = {
     // config.resolve.symlinks(true)
     // 多页应用自定义name chunks
     config.plugins.delete('named-chunks')
+    // 移除moment非中文语言包
+    // config.plugins.set('rm-moment-lang', new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/))
     // 添加别名
     const THEME = process.env.THEME || 'Default'
     config.resolve.alias
