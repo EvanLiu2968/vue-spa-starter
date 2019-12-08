@@ -66,7 +66,18 @@ export const constantRouterMap = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: 'mobile',
+    component: Layout,
+    children: [
+      {
+        path: `${window.location.origin}/mobile`,
+        meta: { title: 'mobile单页', icon: 'el-icon-apple' }
+      }
+    ]
+  },
+
+  { path: '*', component: () => import('../views/404'), hidden: true }
 ]
 
 export default new Router({

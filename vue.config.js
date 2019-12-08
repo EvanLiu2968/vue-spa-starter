@@ -15,26 +15,44 @@ const entry = glob.sync(resolve('src/pages/**/index.js'))
 
 if (!entry) {
   console.error('没有找到入口文件！请检查 src/pages/**/index.js')
-}resolve
+  return
+}
 
-entry.forEach(function(page) {
-  const entryName = page.match(/pages\/(\w+)\//)[1]
+const singlePack = process.env.singlePack || ''
+const outputDir = singlePack ? `dist/${singlePack}` : 'dist'
 
+if (singlePack) {
   let template = resolve('public/index.html')
-  if (fs.existsSync(resolve(`src/pages/${entryName}/index.html`))) {
-    template = resolve(`src/pages/${entryName}/index.html`)
+  if (fs.existsSync(resolve(`src/pages/${singlePack}/index.html`))) {
+    template = resolve(`src/pages/${singlePack}/index.html`)
   }
-  pages[entryName] = {
-    entry: `src/pages/${entryName}/index.js`,
+  pages[singlePack] = {
+    entry: `src/pages/${singlePack}/index.js`,
     // chunks: ['chunk-vendors', 'chunk-common', 'index'],
+    filename: `index.html`,
     template
   }
-})
+} else {
+  entry.forEach(function(page) {
+    const entryName = page.match(/pages\/(\w+)\//)[1]
+
+    let template = resolve('public/index.html')
+    if (fs.existsSync(resolve(`src/pages/${entryName}/index.html`))) {
+      template = resolve(`src/pages/${entryName}/index.html`)
+    }
+    pages[entryName] = {
+      entry: `src/pages/${entryName}/index.js`,
+      // chunks: ['chunk-vendors', 'chunk-common', 'index'],
+      filename: `${entryName}/index.html`,
+      template
+    }
+  })
+}
 
 module.exports = {
   pages,
   // publicPath: process.env.NODE_ENV === 'production' ? './dist/' : '',
-  outputDir: 'dist',
+  outputDir,
   configureWebpack: {
     plugins: [
       new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)

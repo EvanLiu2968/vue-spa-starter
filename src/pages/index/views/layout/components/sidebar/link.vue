@@ -1,7 +1,6 @@
 
 <template>
-  <!-- eslint-disable vue/require-component-is -->
-  <component v-bind="linkProps(to)">
+  <component :is="linkProps.is" v-bind="linkProps">
     <slot/>
   </component>
 </template>
@@ -16,9 +15,11 @@ export default {
       required: true
     }
   },
-  methods: {
-    linkProps(url) {
+  computed: {
+    linkProps() {
+      const url = this.to
       if (isExternal(url)) {
+        console.log(url)
         return {
           is: 'a',
           href: url,

@@ -39,9 +39,7 @@ nginx配置地址: cd /etc/nginx/vhost
 - `.vue`文件及相关文件夹命名为全小写，以`-`分隔，例如：`button-group`
 
 ## 注意点
-- 因需要兼容ie9，要求ie9下基本布局不乱，基础功能正常
 - js的polyfill已通过html全局引入cdn，不需要再使用`babel-polyfill`或`transform-runtime`来解决
-- flex为ie10+，不能使用flex布局（`el-row``el-col`可使用）,或者参考bootstrap4兼容flex和百分比布局
 - 通过`~/src/styles/element-theme.scss`定制element-ui主题
 - 通用样式写在`~/src/styles/${THEME}/app.scss`
 - 主要样式变量命名在`~/src/styles/${THEME}/variables.scss`，组件样式通过已定义变量统一主题
