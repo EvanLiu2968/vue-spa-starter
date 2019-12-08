@@ -8,7 +8,7 @@ function resolve(dir) {
   return path.join(__dirname, './', dir)
 }
 
-require('dotenv').config()
+// require('dotenv').config() // vue-cli3已经默认开启
 
 const pages = {}
 const entry = glob.sync(resolve('src/pages/**/index.js'))
@@ -43,7 +43,7 @@ if (singlePack) {
     pages[entryName] = {
       entry: `src/pages/${entryName}/index.js`,
       // chunks: ['chunk-vendors', 'chunk-common', 'index'],
-      filename: `${entryName}/index.html`,
+      filename: process.env.NODE_ENV === 'production' ? `${entryName}/index.html` : undefined,
       template
     }
   })

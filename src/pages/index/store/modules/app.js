@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 // 交互相关，不涉及后端交互数据
 const app = {
+  // 在此处从localStorage或cookie初始化Store状态
   state: {
     sidebar: {
       opened: !+Cookies.get('sidebarStatus'),
