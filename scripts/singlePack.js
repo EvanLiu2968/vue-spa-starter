@@ -14,6 +14,7 @@ if (argv.name) {
   }
   process.env.singlePack = argv.name
 
+  // 等同于 vue-cli-service build
   const { error } = require('@vue/cli-shared-utils')
   const Service = require('@vue/cli-service/lib/Service')
   const service = new Service(process.env.VUE_CLI_CONTEXT || process.cwd())
