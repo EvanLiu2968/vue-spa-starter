@@ -14,7 +14,12 @@ yarn run dev # 默认入口为src/pages/*/index.js
 
 ### 环境配置
 
-需要自定义环境变量，请在根目录新建一个`.env`文件，该文件忽略提交
+```bash
+.env # 默认配置
+.env.local # gitignore，会merge .env
+.env.prod
+.env.prod.local # gitignore，会merge .env.prod
+```
 
 ### 测试环境
 - [使用docker和pm2在生产环境中部署nodejs应用](https://www.jianshu.com/p/bb9f88c1c032?utm_campaign)
@@ -45,13 +50,6 @@ nginx配置地址: cd /etc/nginx/vhost
 - 主要样式变量命名在`~/src/styles/${THEME}/variables.scss`，组件样式通过已定义变量统一主题
 - 图标库已放在`https://www.iconfont.cn/` (目前挂在github/evanliu2968账号内)
 - https://serverfault.com/questions/506972/nginx-why-i-cant-put-proxy-set-header-inside-an-if-clause
-
-## Mock数据
-不建议使用mockjs，如需模拟数据建议如下：
-- 直接在`src/api`或组件里mock数据对象
-- 使用`https://easy-mock.com`代理接口
-- 自行写后端接口
-发布环境使用 `nginx` 或 `nginx + node`反向代理接口
 
 ## Enhance Project
 

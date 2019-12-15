@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
+    // ecmaVersion: 8,
     sourceType: 'module'
   },
   env: {
@@ -9,29 +10,33 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended'],
+  extends: ['eslint:recommended', 'plugin:vue/recommended'],
 
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
-    "vue/max-attributes-per-line": [2, {
-      "singleline": 10,
-      "multiline": {
-        "max": 1,
-        "allowFirstLine": false
+    'vue/max-attributes-per-line': [2, {
+      'singleline': 10,
+      'multiline': {
+        'max': 1,
+        'allowFirstLine': false
       }
     }],
-    "vue/attributes-order": ["waning"],
-    "vue/name-property-casing": ["error", "PascalCase"],
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "never",
-        "normal": "any",
-        "component": "any"
+    'vue/attributes-order': [1],
+    'vue/name-property-casing': [1, 'PascalCase'],
+    'vue/html-self-closing': [1, {
+      'html': {
+        'void': 'never',
+        'normal': 'any',
+        'component': 'any'
       },
-      "svg": "always",
-      "math": "always"
+      'svg': 'always',
+      'math': 'always'
     }],
+    'vue/no-unused-components': [1], // warning没用到的组件
+    'vue/require-default-prop': [0], // prop允许无默认值
+    'vue/order-in-components': [0], // 规范化vue组件属性顺序，先关闭
+    'vue/singleline-html-element-content-newline': [0],
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
       'before': true,
@@ -44,7 +49,7 @@ module.exports = {
     'camelcase': [0, {
       'properties': 'always'
     }],
-    'comma-dangle': [2, 'never'],
+    'comma-dangle': [0, 'never'],
     'comma-spacing': [2, {
       'before': false,
       'after': true
@@ -59,7 +64,7 @@ module.exports = {
       'before': true,
       'after': true
     }],
-    'handle-callback-err': [2, '^(err|error)$'],
+    'handle-callback-err': [0, '^(err|error)$'],
     'indent': [2, 2, {
       'SwitchCase': 1
     }],
@@ -149,7 +154,7 @@ module.exports = {
     }],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
-    'no-unused-vars': [2, {
+    'no-unused-vars': [1, {
       'vars': 'all',
       'args': 'none'
     }],
@@ -201,6 +206,13 @@ module.exports = {
       objectsInObjects: false
     }],
     'array-bracket-spacing': [2, 'never']
+  },
+  /**
+   * 除了webpack.DefinePlugin和webpack.ProvidePlugin，window的全局变量要在代码里声明const xx = window.xx
+   * 声明是为了其他人知道代码变量来源，并且尽可能少声明window/global变量
+   */
+  globals: {
+    '_': false,
+    '__dirname': false,
   }
 }
-

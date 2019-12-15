@@ -1,25 +1,25 @@
 <template>
   <el-select
+    v-model="query"
     :remote-method="remoteMethod"
     :loading="loading"
-    v-model="query"
     filterable
     remote
     placeholder="请输入关键字"
-    @change="onChange">
+    @change="onChange"
+  >
     <el-option
       v-for="item in list"
       :key="item.code"
       :label="item.name"
-      :value="item.code">
+      :value="item.code"
+    >
     </el-option>
   </el-select>
 </template>
 
 <script>
-import {
-  searchNativePlace
-} from '@/api/sysCode'
+import { queryDistrict } from '@/api/sysCode'
 
 export default {
   props: {
@@ -51,7 +51,7 @@ export default {
     remoteMethod(query) {
       if (query !== '') {
         this.loading = true
-        searchNativePlace({ str: query }).then(res => {
+        queryDistrict({ str: query }).then(res => {
           this.loading = false
           this.list = res.response.records
         })
@@ -61,6 +61,7 @@ export default {
     },
     onChange(value) {
       this.$emit('input', value)
+      this.$emit('change', value)
     }
   }
 }

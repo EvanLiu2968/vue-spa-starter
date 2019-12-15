@@ -1,15 +1,14 @@
 <template>
   <div class="navbar">
     <div class="app-logo">
-      <img src="/images/logo-text.png" >
+      <img src="/images/logo-text.png">
     </div>
     <div class="pull-left">
       <!-- <hamburger class="hamburger-container"/> -->
-      <breadcrumb/>
+      <breadcrumb />
     </div>
 
     <div class="right-menu">
-
       <div class="right-menu-item">
         <router-link to="/dashboard" title="工作台">
           <span>
@@ -33,7 +32,7 @@
         <div class="avatar-wrapper">
           <img class="user-avatar" :src="userinfo.avatar">
           <span class="user-name">{{ userinfo.adminName }}</span>
-          <i class="el-icon-caret-bottom" style="top:15px;"/>
+          <i class="el-icon-caret-bottom" style="top:15px;" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown" style="width: 150px">
           <el-dropdown-item>

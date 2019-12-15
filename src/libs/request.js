@@ -98,8 +98,8 @@ service.interceptors.response.use(
         window.location.reload()
       } else {
         Message({
-          message: res.message,
-          type: 'error' || '服务器错误',
+          message: res.message || '服务器错误',
+          type: 'error',
           duration: 3 * 1000
         })
       }

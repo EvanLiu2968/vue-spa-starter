@@ -1,6 +1,6 @@
 <template>
   <div class="app-breadcrumb-container border-b">
-    <breadcrumb/>
+    <breadcrumb />
   </div>
 </template>
 

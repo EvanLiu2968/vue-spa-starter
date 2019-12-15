@@ -9,32 +9,35 @@
       :validate-event="false"
       :class="{ 'is-focus': visible }"
       @keydown.native.esc.stop.prevent="visible = false"
-      @keydown.native.tab="visible = false">
-      <template slot="suffix" >
+      @keydown.native.tab="visible = false"
+    >
+      <template slot="suffix">
         <i v-if="!selectedLabel" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
         <i v-else :class="['el-select__caret', 'el-input__icon', 'el-icon-circle-close']" @click="handleClearClick"></i>
       </template>
     </el-input>
     <el-dropdown-menu slot="dropdown" :style="{minWidth:inputWidth+'px'}">
       <el-scrollbar
+        ref="scrollbar"
         wrap-class="el-select-dropdown__wrap"
         view-class="el-select-dropdown__list"
-        ref="scrollbar">
+      >
         <el-tree
+          v-show="!loading"
           ref="tree"
           :data="tree.data"
           :node-key="tree.key"
           :expand-on-click-node="true"
           default-expand-all
-          v-show="!loading"
-          @node-click="(data, node) => handleSelect(data, node)">
+          @node-click="(data, node) => handleSelect(data, node)"
+        >
           <template slot-scope="{ node, data }">
             <slot :node="node" :data="data"></slot>
           </template>
         </el-tree>
         <template v-if="loading && emptyText">
-          <slot name="empty" v-if="$slots.empty"></slot>
-          <p class="el-select-dropdown__empty" v-else>
+          <slot v-if="$slots.empty" name="empty"></slot>
+          <p v-else class="el-select-dropdown__empty">
             {{ emptyText }}
           </p>
         </template>

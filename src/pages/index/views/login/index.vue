@@ -19,11 +19,12 @@
             <i class="el-icon-sys-icon-lock" />
           </span>
           <el-input
-            :type="pwdType"
             v-model="loginForm.adminPwd"
+            :type="pwdType"
             auto-complete="on"
             placeholder="密码"
-            @keyup.enter.native="handleLogin" />
+            @keyup.enter.native="handleLogin"
+          />
           <span class="show-pwd" @click="showPwd">
             <i :class="pwdType === 'password' ? 'el-icon-sys-eye1' : 'el-icon-sys-eye'" />
           </span>

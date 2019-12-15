@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <h2 class="dashboard-title">欢迎使用！</h2>
-    <v-chart :options="chartData"/>
+    <v-chart :options="chartData" />
   </div>
 </template>
 

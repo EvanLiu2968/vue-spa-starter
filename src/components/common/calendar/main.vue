@@ -7,11 +7,11 @@
       </el-col>
       <el-col :span="12" class="app-calendar__header-item">
         <div>
-          <div class="el-calendar__button-group pull-left" v-if="validatedRange.length === 0">
+          <div v-if="validatedRange.length === 0" class="el-calendar__button-group pull-left">
             <span class="el-calendar__button" @click="selectDate('prev-month')"><i class="el-icon-arrow-left"></i></span>
           </div>
           <span class="app-calendar__header-date">{{ i18nDate }}</span>
-          <div class="el-calendar__button-group pull-right" v-if="validatedRange.length === 0">
+          <div v-if="validatedRange.length === 0" class="el-calendar__button-group pull-right">
             <span class="el-calendar__button" @click="selectDate('next-month')"><i class="el-icon-arrow-right"></i></span>
           </div>
         </div>
@@ -19,19 +19,22 @@
       </el-col>
     </el-row>
     <div
-      class="el-calendar__body"
       v-if="validatedRange.length === 0"
-      key="no-range">
+      key="no-range"
+      class="el-calendar__body"
+    >
       <date-table
         :date="date"
         :selected-day="realSelectedDay"
         :first-day-of-week="realFirstDayOfWeek"
-        @pick="pickDay" />
+        @pick="pickDay"
+      />
     </div>
     <div
       v-else
+      key="has-range"
       class="el-calendar__body"
-      key="has-range">
+    >
       <date-table
         v-for="(range, index) in validatedRange"
         :key="index"
@@ -39,7 +42,8 @@
         :selected-day="realSelectedDay"
         :range="range"
         :hide-header="index !== 0"
-        @pick="pickDay" />
+        @pick="pickDay"
+      />
     </div>
     <slot name="calendar-footer"></slot>
   </div>

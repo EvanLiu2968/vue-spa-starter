@@ -9,7 +9,7 @@
  * @param  {Array} list
  * @return {Array} tree
  */
-export function listToArrayTree(list, parentId = 0, idName = 'recId', parentIdName = 'parentId', level = 99, depth) {
+export function listToArrayTree(list, parentId = 0, idName = 'id', parentIdName = 'parentId', level = 99, depth) {
   if (!list.length) return []
 
   const itemArr = []

@@ -1,9 +1,9 @@
 <template>
   <div v-if="print">
-    <div class="echarts" ref="echarts"/>
+    <div ref="echarts" class="echarts" />
     <img v-if="printUrl" :src="printUrl" class="echarts_PRINT">
   </div>
-  <div v-else class="echarts" ref="echarts"/>
+  <div v-else ref="echarts" class="echarts" />
 </template>
 
 <style>

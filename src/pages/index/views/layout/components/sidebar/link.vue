@@ -1,7 +1,7 @@
 
 <template>
   <component :is="linkProps.is" v-bind="linkProps">
-    <slot/>
+    <slot />
   </component>
 </template>
 

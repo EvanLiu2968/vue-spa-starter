@@ -12,13 +12,9 @@ export function getRealFileUrl(path) {
   if (!path) {
     return ''
   }
-  if (/^\/data\/cas\//.test(path)) {
-    path = path.replace('/data/cas/', '')
-  }
   if (/^(\/fileService\/|\/static\/)/.test(path)) {
     return path
   }
-  // return `${baseFileHost}/${path}`
   return `/fileService/${path}`
 }
 

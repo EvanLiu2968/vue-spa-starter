@@ -1,5 +1,5 @@
 import {
-  searchSysCodeCategory,
+  getSystemConfig,
   getMessageCount
 } from '@/api/system'
 
@@ -25,7 +25,7 @@ const sys = {
       })
     },
     UpdateSysCode({ commit }) {
-      searchSysCodeCategory().then(res => {
+      getSystemConfig().then(res => {
         commit('SET_SYS_CODE', res.response)
       })
     }

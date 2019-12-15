@@ -22,16 +22,17 @@
       :border="border"
       :row-key="rowKey"
       v-bind="otherProps"
-      v-on="otherListeners"
       style="width: 100%"
       size="medium"
       :span-method="spanMethod"
-      @selection-change="handleSelectionChange">
+      v-on="otherListeners"
+      @selection-change="handleSelectionChange"
+    >
       <el-table-column v-if="rowSelect" type="selection" :reserve-selection="reserveSelect" width="36" :selectable="selectable"></el-table-column>
       <slot></slot>
       <div slot="empty">暂无数据</div>
     </el-table>
-    <div class="app-table-tools" v-if="!hiddenFooter">
+    <div v-if="!hiddenFooter" class="app-table-tools">
       <div class="app-table-left">
         <span class="text-gray" style="margin-right:20px">合计条数：{{ total }}条</span>
         <slot name="footer-left"></slot>
@@ -48,7 +49,8 @@
           next-text="下一页"
           layout="prev, pager, next, sizes, jumper"
           @current-change="handleCurrentChange"
-          @size-change="handleSizeChange">
+          @size-change="handleSizeChange"
+        >
         </el-pagination>
       </div>
     </div>

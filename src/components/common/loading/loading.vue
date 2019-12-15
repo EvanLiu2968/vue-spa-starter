@@ -8,14 +8,16 @@
           position: 'absolute',
           display:'inline-block',
           left:0
-      }">
+        }"
+      >
         <template v-if="type === 'circular'">
           <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" />
           </svg>
         </template>
         <template
-          v-if="type === 'comet'">
+          v-if="type === 'comet'"
+        >
           <div class="el-loading-comet">
             <div class="loader"></div>
           </div>

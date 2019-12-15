@@ -3,18 +3,18 @@
  */
 import request from '@/libs/request'
 
-// 籍贯出生地模糊查询
-export function searchNativePlace(data = {}) {
+// 地区模糊查询
+export function queryDistrict(data = {}) {
   return request({
-    url: '/cas/sysCode/listRegionSysCode',
+    url: '/v1/system/queryDistrict',
     method: 'get',
     params: data
   })
 }
-// 项目代码表Map查询（除出生地）
-export function searchSysCodeCategory(data = {}) {
+// 项目配置表Map查询
+export function getSystemConfig(data = {}) {
   return request({
-    url: '/cas/sysCodeCategory/searchSysCodeCategory',
+    url: '/v1/system/getSystemConfig',
     method: 'get',
     params: data
   })
@@ -23,7 +23,7 @@ export function searchSysCodeCategory(data = {}) {
 // 查询消息数量
 export function getMessageCount(data = {}) {
   return request({
-    url: '/cas/messageAlert/selectMessageAlertCount',
+    url: '/v1/system/getMessageCount',
     method: 'get',
     data: data
   })
